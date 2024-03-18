@@ -14,7 +14,7 @@ export const Works = [
     ],
     date: "2024 - ",
     link: {
-      href: "https://www.google.com",
+      href: "https://www.sanjarjelet.com",
       text: "View The Website",
     },
     imageUrl: "/personalwebsite.png",

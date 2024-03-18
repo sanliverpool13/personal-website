@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,9 +23,18 @@ const navigationLinks = [
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const { setTheme, resolvedTheme } = useTheme();
-  console.log("themere resolved", resolvedTheme);
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <nav className="absolute top-0 w-full h-40 lg:px-48 md:px-24 px-10">
