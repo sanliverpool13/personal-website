@@ -5,6 +5,7 @@ import Navbar from "@/components/general/navbar";
 import Footer from "@/components/general/footer";
 import PageLayout from "@/components/pagelayout";
 import { Providers } from "./providers";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           <PageLayout>{children}</PageLayout>
           <Footer />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
