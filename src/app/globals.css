@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -11,19 +11,15 @@
 }
 
 :root {
-  --background-color: #ffffff;
-  /* --text-color: #36453b;
-  --border-color: #36453b; */
-  --text-color: #171717;
-  --border-color: #171717;
-  --btn-color: #171717;
+  --background-color: #f5f5f5;
+  --text-color: #1a1a1a;
+  --border-color: #1a1a1a;
 }
 
 [class="dark"] {
-  --background-color: #36453b;
-  --text-color: #f5f9eb;
-  --border-color: #f5f9eb;
-  --btn-color: #36453b;
+  --background-color: #1b221d;
+  --text-color: #bdcbc2;
+  --border-color: #bdcbc2;
 }
 
 * {
@@ -41,5 +37,6 @@
 }
 
 .btn-color {
-  color: var(--btn-color);
+  color: var(--background-color);
+  background-color: var(--text-color);
 }

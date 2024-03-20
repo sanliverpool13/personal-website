@@ -78,7 +78,7 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleChange}
             placeholder="Name"
-            className="w-full border rounded-lg px-4 py-4"
+            className="w-full border-2 rounded-lg px-4 py-4"
           />
         </div>
         <div>
@@ -88,7 +88,7 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleChange}
             placeholder="Email"
-            className="w-full border rounded-lg px-4 py-4"
+            className="w-full border-2 rounded-lg px-4 py-4"
           />
         </div>
         <div>
@@ -98,12 +98,12 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="Enter Your Message"
             rows={4}
-            className="w-full border rounded-lg px-4 py-4"
+            className="w-full border-2 rounded-lg px-4 py-4"
           ></textarea>
         </div>
         <button
           type="submit"
-          className="py-6 px-4 rounded-lg bg-[#FBCC75] hover:bg-[#f2c065]"
+          className="py-6 px-4 rounded-lg btn-color"
           style={{
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.25)",
           }}

@@ -37,21 +37,10 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="absolute top-0 w-full h-40 lg:px-48 md:px-24 px-10">
+    <nav className="absolute top-0 w-full md:h-60 h-28 lg:px-48 md:px-24 px-10">
       {/* Inner Nav container */}
       <div className="flex justify-between items-center h-full container mx-auto w-full max-w-5xl">
-        {/* Container for Logo and Navigation Links */}
-        <div className="flex items-center gap-16">
-          {/* Logo Section */}
-          <Link
-            href="/"
-            className="text-2xl font-bold"
-            style={{ textShadow: "0 4px 4px rgba(0, 0, 0, 0.25)" }}
-          >
-            SanJ
-          </Link>
-          <NavLinks layout="horizontal" />
-        </div>
+        <NavLinks layout="horizontal" />
 
         {/* Navigation Links and Sun Icon for small screens */}
         <div
@@ -119,7 +108,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ layout }) => {
   // Determine class names based on layout
   const containerClasses =
     layout === "horizontal"
-      ? "hidden lg:flex gap-4" // Use 'lg:flex' to show horizontally only on large screens
+      ? "hidden lg:flex gap-8" // Use 'lg:flex' to show horizontally only on large screens
       : "flex flex-col items-center space-y-6 lg:hidden"; // Use 'lg:hidden' to hide on large screens, display vertically otherwise
 
   return (
@@ -150,8 +139,8 @@ const NavLink = ({ href, text, onClick }: NavLinkProps) => {
     <Link
       href={href}
       passHref
-      className={`hover:text-gray-300 font-normal text-base  p-2.5 ${
-        isActive ? "text-[#FBCC75]" : ""
+      className={`hover:text-gray-300 text-base leading-none ${
+        isActive ? "font-extrabold" : ""
       }`}
       onClick={handleClick}
     >

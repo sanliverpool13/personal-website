@@ -11,7 +11,7 @@ const ButtonLink = ({ href, ariaLabel, children }: ButtonLinkProps) => {
     <Link href={href} passHref legacyBehavior>
       <a
         aria-label={ariaLabel}
-        className="inline-flex items-center btn-color justify-center gap-2 bg-[#FBCC75]  py-2 px-4 rounded-md shadow-[0_4px_4px_rgba(0,0,0,0.25)] hover:bg-[#f2c065]"
+        className="inline-flex items-center btn-color justify-center gap-2 py-2 px-4 rounded-md shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
       >
         {children}
       </a>
