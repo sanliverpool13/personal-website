@@ -15,9 +15,9 @@ const WorkExperienceSection: React.FC<WorkExperienceSectionProps> = ({
   workExperiences,
 }) => {
   return (
-    <section className="flex flex-col gap-20">
+    <section className="flex flex-col md:gap-20 gap-12">
       <SectionTitle title={title} />
-      <div className="flex flex-col gap-28">
+      <div className="flex flex-col md:gap-28 gap-12">
         {workExperiences.map((exp, index) => (
           <WorkExperienceCard key={index} {...exp} />
         ))}

@@ -59,8 +59,8 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 items-center text-center">
-      <div className="flex flex-col gap-8">
+    <div className="flex flex-col md:gap-16 gap-12 md:items-center md:text-center">
+      <div className="flex flex-col md:gap-8 gap-4">
         <h2 className="text-2xl font-bold">Send Me A Message</h2>
         <p>
           If you have any questions or just want to say hi please send me a

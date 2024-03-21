@@ -5,7 +5,7 @@ const techStack = ["React", "Next.js", "Node.js"]; // Example tech stack
 
 const TechStack = () => {
   return (
-    <section className="flex flex-col gap-8 w-full">
+    <section className="flex flex-col gap-12 w-full">
       <SectionTitle title="My Tech Stack" />
       <div className="flex flex-wrap gap-2" style={{ maxWidth: "600px" }}>
         {techStack.map((tech, index) => (

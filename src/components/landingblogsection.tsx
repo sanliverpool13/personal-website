@@ -37,7 +37,7 @@ const LandingBlogSection: React.FC<LandingBlogSectionProps> = ({
   // ];
 
   return (
-    <section className="flex flex-col gap-20 w-full">
+    <section className="flex flex-col md:gap-20 gap-12 w-full">
       <SectionTitle
         title={
           blogPosts.length > 0
@@ -46,7 +46,7 @@ const LandingBlogSection: React.FC<LandingBlogSectionProps> = ({
         }
       />
       {blogPosts.length > 0 && (
-        <div className="flex flex-col gap-28">
+        <div className="flex flex-col md:gap-28 gap-12">
           {blogPosts.map((post, index) => (
             <BlogPostCard key={index} post={post} />
           ))}

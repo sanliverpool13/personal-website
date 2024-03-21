@@ -18,8 +18,8 @@ const WorkCard: React.FC<WorkCardProps> = ({
       <div className="relative border-8 h-96 md:h-auto">
         <Image src={`${imageUrl}`} alt={imageAlt} fill={true} />
       </div>
-      <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-4">
+      <div className="flex flex-col md:gap-8 gap-4">
+        <div className="flex flex-col md:gap-4 gap-2">
           <SectionTitle title={title} />
           <p>{description}</p>
           <div className="flex flex-wrap gap-2">

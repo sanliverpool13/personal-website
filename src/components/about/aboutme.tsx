@@ -4,7 +4,7 @@ import SectionTitle from "../general/sectiontitle";
 
 const AboutMe = () => {
   return (
-    <section className="flex flex-col gap-20">
+    <section className="flex flex-col md:gap-20 gap-12">
       <SectionTitle title="About Me" />
       <div className="md:block flex flex-col gap-8 w-full">
         <div className="md:float-left md:mr-9">
