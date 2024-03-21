@@ -79,7 +79,7 @@ const NavLink = ({ href, text, onClick }: NavLinkProps) => {
     <Link
       href={href}
       passHref
-      className={`hover:text-gray-300 text-sm md:text-base leading-none ${
+      className={`hover:opacity-50 transition-opacity duration-150 text-sm md:text-base leading-none ${
         isActive ? "font-extrabold" : ""
       }`}
       onClick={handleClick}
@@ -97,7 +97,7 @@ const ThemeToggleButton = () => {
     <div className="flex items-center justify-center p-2">
       <button
         aria-label="Toggle Dark Mode"
-        className="flex items-center justify-center md:text-2xl text-xl"
+        className="flex items-center justify-center md:text-2xl text-xl hover:opacity-50 transition-opacity duration-150"
         onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       >
         <FontAwesomeIcon icon={resolvedTheme === "dark" ? faMoon : faSun} />

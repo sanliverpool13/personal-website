@@ -10,7 +10,7 @@ const Footer = () => {
             href="https://github.com/sanliverpool13"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-2xl hover:text-gray-300"
+            className="text-2xl hover:opacity-50 transition-opacity duration-150"
           >
             <FontAwesomeIcon icon={faGithub} />
           </a>
@@ -18,7 +18,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/sanjarjelet/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-2xl hover:text-gray-300"
+            className="text-2xl hover:opacity-50 transition-opacity duration-150"
           >
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
