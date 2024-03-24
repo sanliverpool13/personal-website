@@ -10,6 +10,9 @@ module.exports = {
         86: "221.5rem",
         88: "22rem",
       },
+      boxShadow: {
+        tile: "0 2px 6px 0 rgba(0,0,0,.05), 0 0 3px 0 rgba(0,0,0,.1)",
+      },
     },
   },
   plugins: [],

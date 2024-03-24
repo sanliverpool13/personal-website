@@ -14,12 +14,14 @@
   --background-color: #f5f5f5;
   --text-color: #1a1a1a;
   --border-color: #1a1a1a;
+  --skill-tile-dm-bg: #f5f5f5;
 }
 
 [class="dark"] {
   --background-color: #1b221d;
   --text-color: #bdcbc2;
   --border-color: #bdcbc2;
+  --skill-tile-dm-bg: #222b24;
 }
 
 * {
@@ -39,4 +41,8 @@
 .btn-color {
   color: var(--background-color);
   background-color: var(--text-color);
+}
+
+.skill-tile-dm {
+  background-color: var(--skill-tile-dm-bg);
 }
