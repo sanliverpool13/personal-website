@@ -1,3 +1,5 @@
+import PersonalWebsiteImg from "../../public/personalwebsite.png";
+import TravelWebsiteImg from "../../public/travelwebsite.png";
 export const Works = [
   {
     id: "1",
@@ -17,7 +19,7 @@ export const Works = [
       href: "https://www.sanjarjelet.com",
       text: "View The Website",
     },
-    imageUrl: "/personalwebsite.png",
+    imageSrc: PersonalWebsiteImg,
     imageAlt: "A screnshot of landing page",
   },
   {
@@ -38,7 +40,7 @@ export const Works = [
       href: "https://www.madisonandsanjar.com/",
       text: "View The Website",
     },
-    imageUrl: "/travelwebsite.png",
+    imageSrc: TravelWebsiteImg,
     imageAlt: "A screnshot of landing page",
   },
 ];

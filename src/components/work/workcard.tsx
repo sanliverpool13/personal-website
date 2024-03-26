@@ -11,12 +11,19 @@ interface WorkCardProps {
 }
 
 const WorkCard: React.FC<WorkCardProps> = ({
-  work: { imageUrl, imageAlt, description, skills, link, title, date },
+  work: { imageSrc, imageAlt, description, skills, link, title, date },
 }) => {
   return (
     <div className="grid md:grid-cols-2 md:gap-24 gap-8">
-      <div className="relative border-8 h-96 md:h-auto">
-        <Image src={`${imageUrl}`} alt={imageAlt} fill={true} />
+      <div className="flex relative border-8 h-48 md:h-auto">
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          style={{
+            objectFit: "cover",
+          }}
+        />
       </div>
       <div className="flex flex-col md:gap-8 gap-4">
         <div className="flex flex-col md:gap-4 gap-2">
