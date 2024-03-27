@@ -23,7 +23,10 @@ const Footer = () => {
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
         </div>
-        <p className="text-center">Designed & built by Sanjar Jelet</p>
+        <div>
+          <p className="text-center">Designed & Built by Sanjar Jelet</p>
+          <p className="text-center">&copy; 2024 Sanjar Jelet</p>
+        </div>
       </div>
     </footer>
   );
