@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import SkillTag from "../general/skilltag"; // Adjust the import path as needed
@@ -5,6 +6,11 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WorkCardType } from "@/types";
 import SectionTitle from "../general/sectiontitle";
+import { motion } from "framer-motion";
+import {
+  containerVariants,
+  containerVariantsWithDelay,
+} from "@/lib/framer-motion";
 
 interface WorkCardProps {
   work: WorkCardType;
@@ -15,7 +21,13 @@ const WorkCard: React.FC<WorkCardProps> = ({
 }) => {
   return (
     <div className="grid md:grid-cols-2 md:gap-24 gap-8">
-      <div className="flex relative border-8 h-48 md:h-auto">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={containerVariants}
+        className="flex relative border-8 h-48 md:h-auto"
+      >
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -24,8 +36,14 @@ const WorkCard: React.FC<WorkCardProps> = ({
             objectFit: "cover",
           }}
         />
-      </div>
-      <div className="flex flex-col md:gap-8 gap-4">
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={containerVariantsWithDelay}
+        className="flex flex-col md:gap-8 gap-4"
+      >
         <div className="flex flex-col md:gap-4 gap-2">
           <SectionTitle title={title} />
           <p>{description}</p>
@@ -44,7 +62,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
             <FontAwesomeIcon icon={faArrowRight} />
           </a>
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 };

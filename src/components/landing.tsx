@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 
 // Define the animation variants
 const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
 const Landing = () => {

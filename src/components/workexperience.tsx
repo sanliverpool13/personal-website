@@ -8,8 +8,8 @@ import { useRef, useEffect } from "react";
 
 // Define the animation variants
 const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
 };
 
 interface WorkExperienceSectionProps {
@@ -32,16 +32,7 @@ const WorkExperienceSection: React.FC<WorkExperienceSectionProps> = ({
 
   return (
     <section className="flex flex-col md:gap-20 gap-12">
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={containerVariants}
-        ref={ref}
-      >
-        <SectionTitle title={title} />
-      </motion.div>
-
+      <SectionTitle title={title} />
       <div className="flex flex-col md:gap-28 gap-12">
         {workExperiences.map((exp, index) => (
           <WorkExperienceCard key={index} {...exp} />

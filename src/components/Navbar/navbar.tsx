@@ -35,7 +35,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="absolute top-0 w-full md:h-60 h-28 lg:px-48 md:px-24 px-10">
+    <nav className="absolute top-0 w-full md:h-60 h-28 lg:px-48 md:px-24 px-6">
       <div className="flex justify-between items-center h-full container mx-auto w-full max-w-5xl">
         <NavLinks />
         <ThemeToggleButton />

@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { containerVariants } from "@/lib/framer-motion";
 
 const ContactForm = () => {
   // State for form inputs
@@ -59,7 +61,13 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="flex flex-col md:gap-16 gap-12 md:items-center md:text-center">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={containerVariants}
+      className="flex flex-col md:gap-16 gap-12 md:items-center md:text-center"
+    >
       <div className="flex flex-col md:gap-8 gap-4">
         <h2 className="text-2xl font-bold">Send Me A Message</h2>
         <p>
@@ -111,7 +119,7 @@ const ContactForm = () => {
           Send Message
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 };
 

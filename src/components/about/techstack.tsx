@@ -1,7 +1,7 @@
+"use client";
 import SectionTitle from "../general/sectiontitle";
-import SkillTag from "../general/skilltag"; // Assuming this component already exists
 import SkillTile from "../general/SkillTile";
-// import { DockerIconComponent, ReactIcon } from "../general/SkillTileIcon";
+
 import {
   DockerIcon,
   FigmaIcon,
@@ -36,7 +36,12 @@ const TechStack = () => {
       <SectionTitle title="Skills & Tools" />
       <div className="flex flex-wrap gap-4">
         {techStack.map((tech, index) => (
-          <SkillTile key={index} skillName={tech.skillName} Icon={tech.icon} />
+          <SkillTile
+            key={index}
+            skillName={tech.skillName}
+            Icon={tech.icon}
+            delay={index}
+          />
         ))}
       </div>
     </section>
