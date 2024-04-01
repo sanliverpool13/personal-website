@@ -14,7 +14,7 @@ const SectionTitle: React.FC<SectionTitleProps> = ({ title }) => {
       viewport={{ once: true }}
       variants={containerVariants}
     >
-      <h2 className="text-3xl font-bold">{title}</h2>
+      <h2 className="md:text-5xl text-3xl font-bold">{title}</h2>
     </motion.div>
   );
 };

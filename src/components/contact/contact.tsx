@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { containerVariants } from "@/lib/framer-motion";
+import SectionTitle from "../general/sectiontitle";
 
 const ContactForm = () => {
   // State for form inputs
@@ -68,9 +69,9 @@ const ContactForm = () => {
       variants={containerVariants}
       className="flex flex-col md:gap-16 gap-12 md:items-center md:text-center"
     >
-      <div className="flex flex-col md:gap-8 gap-4">
-        <h2 className="text-2xl font-bold">Send Me A Message</h2>
-        <p>
+      <div className="flex flex-col md:gap-8 gap-4 max-w-lg">
+        <SectionTitle title="Send Me A Message" />
+        <p className="text-xl lg:text-2xl">
           If you have any questions or just want to say hi please send me a
           message!
         </p>

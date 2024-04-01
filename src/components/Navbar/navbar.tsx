@@ -35,7 +35,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="absolute top-0 w-full md:h-60 h-28 lg:px-48 md:px-24 px-6">
+    <nav className="absolute top-0 w-full md:h-48 h-28 lg:px-48 md:px-24 px-6">
       <div className="flex justify-between items-center h-full container mx-auto w-full max-w-5xl">
         <NavLinks />
         <ThemeToggleButton />
@@ -52,9 +52,12 @@ const NavLinks: React.FC = () => {
   return (
     <ul className="list-none flex md:gap-8 gap-2">
       {navigationLinks.map((link, index) => (
-        <li key={link.href} className={`p-2 ${index === 0 ? "pl-0" : ""}`}>
-          <NavLink href={link.href} text={link.text} />
-        </li>
+        <NavLink
+          key={link.href}
+          href={link.href}
+          text={link.text}
+          index={index}
+        />
       ))}
     </ul>
   );
@@ -63,10 +66,11 @@ const NavLinks: React.FC = () => {
 interface NavLinkProps {
   href: string;
   text: string;
+  index: number;
   onClick?: () => void;
 }
 
-const NavLink = ({ href, text, onClick }: NavLinkProps) => {
+const NavLink = ({ href, text, index, onClick }: NavLinkProps) => {
   const pathname = usePathname();
   const isActive = pathname === href;
 
@@ -76,16 +80,22 @@ const NavLink = ({ href, text, onClick }: NavLinkProps) => {
   };
 
   return (
-    <Link
-      href={href}
-      passHref
-      className={`hover:opacity-50 transition-opacity duration-150 text-sm md:text-base leading-none ${
-        isActive ? "font-extrabold" : ""
+    <li
+      className={`p-2 ${index === 0 ? "pl-0" : ""} ${
+        isActive ? "border-b-2" : ""
       }`}
-      onClick={handleClick}
     >
-      {text}
-    </Link>
+      <Link
+        href={href}
+        passHref
+        className={`hover:opacity-50 transition-opacity duration-150 text-sm md:text-base leading-none ${
+          isActive ? "font-extrabold" : ""
+        }`}
+        onClick={handleClick}
+      >
+        {text}
+      </Link>
+    </li>
   );
 };
 
