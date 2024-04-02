@@ -1,3 +1,11 @@
+"use client";
+import SectionTitle from "../general/sectiontitle";
+import { motion } from "framer-motion";
+import {
+  containerVariants,
+  containerVariantsWithDelay,
+} from "@/lib/framer-motion";
+
 interface BlogPostHeaderProps {
   title: string;
   datePosted: string;
@@ -11,12 +19,18 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
 }) => {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-4xl font-medium">{title}</h2>
-      <div className="flex items-center gap-2 text-gray-600">
+      <SectionTitle title={title} />
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={containerVariantsWithDelay}
+        className="flex items-center gap-2"
+      >
         <span>{datePosted}</span>
-        <span className="mx-2 h-2 w-2 bg-gray-600 rounded-full"></span>
+        <span className="mx-2 h-2 w-2 circle-separator-bg rounded-full"></span>
         <span>{readTime}</span>
-      </div>
+      </motion.div>
     </div>
   );
 };

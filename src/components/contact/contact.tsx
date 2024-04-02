@@ -24,8 +24,6 @@ const ContactForm = () => {
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Process the form data, e.g., send it to a server or API
-    console.log(formData);
     // Reset form after submission for demonstration
     setFormData({
       name: "",

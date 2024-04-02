@@ -27,7 +27,6 @@ export const saveSlugIdMapToJson = async (
 
 export const getSlugIdMapFromJson = async () => {
   const filePath = path.join(process.cwd(), "src", "data", `${SLUGIDMAPFILE}`);
-  console.log("file path", filePath);
   const jsonData = fs.readFileSync(filePath, "utf8");
   const slugIdMapping = JSON.parse(jsonData);
 
@@ -35,7 +34,6 @@ export const getSlugIdMapFromJson = async () => {
 };
 
 export const deleteSlugIdMapJson = async () => {
-  console.log("deleted");
   const filePath = path.resolve(
     process.cwd(),
     "src",

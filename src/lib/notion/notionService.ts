@@ -24,7 +24,15 @@ cloudinary.config({
 });
 
 export const fetchNotionData = async (databaseId: string) => {
-  const response = await notion.databases.query({ database_id: databaseId });
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      property: "Status",
+      select: {
+        does_not_equal: "Draft",
+      },
+    },
+  });
   return response;
 };
 

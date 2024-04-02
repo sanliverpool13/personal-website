@@ -8,7 +8,6 @@ interface SkillsProps {
 }
 
 const SkillTile: React.FC<SkillsProps> = ({ skillName, Icon, delay }) => {
-  console.log("delay for tile", delay);
   return (
     <motion.div
       initial="hidden"

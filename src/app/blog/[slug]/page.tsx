@@ -67,8 +67,8 @@ const BlogPostPage = async ({
 
       <div className="w-full md:w-auto">
         <ButtonLink href="/blog" ariaLabel="Back to blog page button">
-          <span>Back To Blog</span>
-          <FontAwesomeIcon icon={faArrowLeftLong} />
+          <span className="btn-color">Back To Blog</span>
+          <FontAwesomeIcon className="btn-color" icon={faArrowLeftLong} />
         </ButtonLink>
       </div>
     </div>

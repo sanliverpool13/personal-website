@@ -15,6 +15,7 @@
   --text-color: #1a1a1a;
   --border-color: #1a1a1a;
   --skill-tile-dm-bg: #f5f5f5;
+  --alternate-bg: #efefef;
 }
 
 [class="dark"] {
@@ -22,6 +23,7 @@
   --text-color: #bdcbc2;
   --border-color: #bdcbc2;
   --skill-tile-dm-bg: #222b24;
+  --alternate-bg: #1d231f;
 }
 
 * {
@@ -32,6 +34,10 @@
   background-color: var(--background-color);
   border-color: var(--border-color);
   color: var(--text-color);
+}
+
+.alternate-bg {
+  background-color: var(--alternate-bg);
 }
 
 .circle-separator-bg {
@@ -45,4 +51,8 @@
 
 .skill-tile-dm {
   background-color: var(--skill-tile-dm-bg);
+}
+
+.circle-separator-bg {
+  background-color: var(--text-color);
 }
