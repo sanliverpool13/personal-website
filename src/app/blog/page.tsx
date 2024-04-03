@@ -3,6 +3,7 @@ import BlogPostsGrid from "@/components/blog/blogpostsgrid";
 import { fetchNotionData, parseNotionData } from "@/lib/notion/notionService";
 import { NotionApiResponse } from "@/types/notion";
 import SectionTitle from "@/components/general/sectiontitle";
+import LandingPageContainer from "@/components/LandingPageContainer";
 
 const BlogPage: React.FC = async () => {
   const databaseId = `${process.env.NOTION_BLOG_DB_ID}`;
@@ -12,13 +13,15 @@ const BlogPage: React.FC = async () => {
   );
 
   return (
-    <div className="flex flex-col gap-16 w-full">
-      {parsedNotionDatabaseData.length > 0 ? (
-        <BlogPostsGrid blogPosts={parsedNotionDatabaseData} />
-      ) : (
-        <SectionTitle title="Coming Soon!" />
-      )}
-    </div>
+    <LandingPageContainer>
+      <div className="flex flex-col gap-16 w-full">
+        {parsedNotionDatabaseData.length > 0 ? (
+          <BlogPostsGrid blogPosts={parsedNotionDatabaseData} />
+        ) : (
+          <SectionTitle title="Coming Soon!" />
+        )}
+      </div>
+    </LandingPageContainer>
   );
 };
 

@@ -6,6 +6,7 @@ import LandingContactSection from "@/components/landingcontactsection";
 import { workExperiences } from "@/data/workexperiences";
 import { fetchNotionData, parseNotionData } from "@/lib/notion/notionService";
 import { NotionApiResponse } from "@/types/notion";
+import LandingPageContainer from "@/components/LandingPageContainer";
 
 const HomePage: NextPage = async () => {
   const databaseId = `${process.env.NOTION_BLOG_DB_ID}`;
@@ -15,16 +16,20 @@ const HomePage: NextPage = async () => {
   );
 
   return (
-    <>
-      <Landing />
+    <LandingPageContainer>
+      <Landing key="landing" />
       <WorkExperience
+        key="work-experience"
         showButton={true}
         title="Recent Work Experience"
         workExperiences={workExperiences.slice(0, 2)}
       />
-      <LandingBlogSection blogPosts={parsedNotionDatabaseData.slice(0, 2)} />
-      <LandingContactSection />
-    </>
+      <LandingBlogSection
+        key="blog-section"
+        blogPosts={parsedNotionDatabaseData.slice(0, 2)}
+      />
+      <LandingContactSection key="contact-section" />
+    </LandingPageContainer>
   );
 };
 

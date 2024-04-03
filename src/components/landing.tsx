@@ -5,7 +5,6 @@ import BestProfileImg from "../../public/BestProfile.jpg";
 import ButtonLink from "./general/buttonlink";
 import { motion } from "framer-motion";
 
-// Define the animation variants
 const containerVariants = {
   hidden: { opacity: 0, y: -10 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
@@ -20,7 +19,6 @@ const Landing = () => {
       variants={containerVariants}
       className="flex flex-col md:flex-row w-full items-center md:justify-between gap-12 md:gap-8 alternate-bg"
     >
-      {/* Text Section */}
       <div className="flex flex-col md:gap-16 gap-8 w-full md:flex-1">
         <header className="space-y-4">
           <h1 className="text-2xl lg:text-4xl font-bold space-y-4">
@@ -40,7 +38,6 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Image Section */}
       <div className="w-full md:flex-1 flex justify-end">
         <div className="relative w-full md:w-5/6">
           <Image

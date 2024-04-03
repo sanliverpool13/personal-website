@@ -3,20 +3,18 @@ import AboutMe from "@/components/about/aboutme";
 import TechStack from "@/components/about/techstack";
 import WorkExperience from "@/components/workexperience";
 import { workExperiences } from "@/data/workexperiences";
-import ThemeSwitch from "@/components/ThemeSwitch";
+import LandingPageContainer from "@/components/LandingPageContainer";
 
 const AboutPage: NextPage = () => {
   return (
-    <>
-      <>
-        <AboutMe />
-        <TechStack />
-        <WorkExperience
-          title="Work Experience"
-          workExperiences={workExperiences}
-        />
-      </>
-    </>
+    <LandingPageContainer>
+      <AboutMe />
+      <TechStack />
+      <WorkExperience
+        title="Work Experience"
+        workExperiences={workExperiences}
+      />
+    </LandingPageContainer>
   );
 };
 
