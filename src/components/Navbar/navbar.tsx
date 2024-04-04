@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { motion, useAnimation } from "framer-motion";
 
 const navigationLinks = [
   { href: "/", text: "Home" },
@@ -80,11 +81,7 @@ const NavLink = ({ href, text, index, onClick }: NavLinkProps) => {
   };
 
   return (
-    <li
-      className={`p-2 ${index === 0 ? "pl-0" : ""} ${
-        isActive ? "border-b-2" : ""
-      }`}
-    >
+    <li className={`p-2 ${index === 0 ? "pl-0" : ""} `}>
       <Link
         href={href}
         passHref
@@ -94,6 +91,14 @@ const NavLink = ({ href, text, index, onClick }: NavLinkProps) => {
         onClick={handleClick}
       >
         {text}
+        {isActive && (
+          <motion.div
+            className="border-b-2 border-current"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+          />
+        )}
       </Link>
     </li>
   );
@@ -102,16 +107,37 @@ const NavLink = ({ href, text, index, onClick }: NavLinkProps) => {
 // ThemeToggleButton Component
 const ThemeToggleButton = () => {
   const { setTheme, resolvedTheme } = useTheme();
+  const controls = useAnimation();
+
+  const handleClick = () => {
+    animateButton();
+  };
+
+  const animateButton = async () => {
+    await controls.start({
+      opacity: 0,
+      scale: 0,
+      transition: { duration: 0.15, ease: "easeInOut" },
+    });
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    await controls.start({
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.15, ease: "easeInOut" },
+    });
+  };
 
   return (
     <div className="flex items-center justify-center p-2">
-      <button
+      <motion.button
         aria-label="Toggle Dark Mode"
         className="flex items-center justify-center md:text-2xl text-xl hover:opacity-50 transition-opacity duration-150"
-        onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        onClick={handleClick}
+        initial={{ opacity: 1, scale: 1 }}
+        animate={controls}
       >
         <FontAwesomeIcon icon={resolvedTheme === "dark" ? faMoon : faSun} />
-      </button>
+      </motion.button>
     </div>
   );
 };
