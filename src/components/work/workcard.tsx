@@ -13,13 +13,15 @@ import {
 } from "@/lib/framer-motion";
 
 const containerVariants2 = {
-  hidden: { opacity: 0, y: -10, rotateY: 0, skewY: 0 },
+  hidden: { opacity: 0, y: -10, rotateY: -10, skewY: -10 },
   visible: {
     opacity: 1,
     y: 0,
-    rotateY: -20,
+    rotateY: -10,
     skewY: -10,
-    transition: { duration: 0.8 },
+    transition: {
+      duration: 1,
+    },
   },
 };
 
