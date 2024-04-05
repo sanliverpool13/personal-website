@@ -83,21 +83,21 @@ const AboutMe = () => {
           className="md:col-start-5 md:col-span-6 flex flex-col text-xl leading-8 text-justify md:space-y-4 space-y-2"
         >
           <h2 className="font-bold text-3xl">
-            I&apos;m a software engineer from Toronto.
+            I&apos;m a software engineer currently based in Toronto.
           </h2>
           <p>
             I have been building web apps for the past 5 years. I enjoy building
-            the frontend and backend equally.
+            both the frontend and backend.
           </p>
           <p>
             I read a lot of books in my free time, mostly sci-fi, fantasy and
-            non-fiction about tech. I love to run and exercise. I am into hiking
-            and calisthenics and I have played highly competitive soccer my
-            entire life.
+            non-fiction about tech. I love to run and exercise and have gotten
+            into hiking and calisthenics recently. I have played highly
+            competitive soccer my entire life and am an avid Liverpool fan!
           </p>
           <p>
-            My goal with this website is just for it to be a playground for me
-            to build things I like and write about topics I find interesting.
+            This website is my little corner on the web, where I will shocase my
+            skills and write a blog.
           </p>
         </motion.div>
       </div>

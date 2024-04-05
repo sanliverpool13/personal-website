@@ -1,5 +1,6 @@
 import PersonalWebsiteImg from "../../public/personalwebsite.png";
-import TravelWebsiteImg from "../../public/travelwebsite.png";
+import TravelWebsiteImg from "../../public/TravelWebScreenshot.png";
+
 export const Works = [
   {
     id: "1",
@@ -26,7 +27,7 @@ export const Works = [
     id: "2",
     title: "Travel Blog",
     description:
-      "Designed and built to blog travels with my gf and also share our interests.",
+      "Designed and built to blog travels and other interests with my beautiful partner Madison.",
     skills: [
       "Next.js",
       "React",

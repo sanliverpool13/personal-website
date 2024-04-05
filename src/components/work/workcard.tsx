@@ -12,6 +12,17 @@ import {
   containerVariantsWithDelay,
 } from "@/lib/framer-motion";
 
+const containerVariants2 = {
+  hidden: { opacity: 0, y: -10, rotateY: 0, skewY: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateY: -20,
+    skewY: -10,
+    transition: { duration: 0.8 },
+  },
+};
+
 interface WorkCardProps {
   work: WorkCardType;
 }
@@ -25,8 +36,9 @@ const WorkCard: React.FC<WorkCardProps> = ({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={containerVariants}
-        className="flex relative border-8 h-48 md:h-auto"
+        variants={containerVariants2}
+        className="relative border-8 h-48 md:h-auto rounded-15 shadow-lg"
+        style={{ transform: "rotateY(10deg)" }}
       >
         <Image
           src={imageSrc}
