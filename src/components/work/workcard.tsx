@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SkillTag from "../general/skilltag"; // Adjust the import path as needed
@@ -11,6 +12,17 @@ import {
   containerVariants,
   containerVariantsWithDelay,
 } from "@/lib/framer-motion";
+
+const containerVariants1 = {
+  hidden: { opacity: 0, y: -10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+    },
+  },
+};
 
 const containerVariants2 = {
   hidden: { opacity: 0, y: -10, rotateY: -10, skewY: -10 },
@@ -32,13 +44,28 @@ interface WorkCardProps {
 const WorkCard: React.FC<WorkCardProps> = ({
   work: { imageSrc, imageAlt, description, skills, link, title, date },
 }) => {
+  const [isMd, setIsMd] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMd(window.innerWidth >= 768);
+    };
+
+    // Call the function to set the initial state
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <div className="grid md:grid-cols-2 md:gap-24 gap-8">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={containerVariants2}
+        variants={isMd ? containerVariants2 : containerVariants1}
         className="relative border-8 h-48 md:h-auto rounded-15 shadow-lg"
         style={{ transform: "rotateY(10deg)" }}
       >

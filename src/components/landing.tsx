@@ -17,7 +17,7 @@ const Landing = () => {
       whileInView="visible"
       viewport={{ once: true }}
       variants={containerVariants}
-      className="flex flex-col md:flex-row w-full items-center md:justify-between gap-12 md:gap-8 alternate-bg"
+      className="flex flex-col md:flex-row w-full items-center md:justify-between gap-12 md:gap-8"
     >
       <div className="flex flex-col md:gap-16 gap-8 w-full md:flex-1">
         <header className="space-y-4">
