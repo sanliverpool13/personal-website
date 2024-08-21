@@ -1,7 +1,10 @@
-import ImageBlock from "./ImageBlock";
-import ParagraphBlock from "./ParagraphBlock";
-import HeadingBlock from "./HeadingBlock";
-import { NotionBlock } from "@/types/notion";
+import ImageBlock from './ImageBlock';
+import ParagraphBlock from './ParagraphBlock';
+import HeadingBlock from './HeadingBlock';
+import BulletBlock from './Bulletblock';
+import { NotionBlock } from '@/types/notion';
+import CodeBlock from './CodeBlock';
+import { mapRichText } from '@/lib/helpers';
 
 interface BlogPostContentProps {
   content: NotionBlock[];
@@ -10,27 +13,34 @@ interface BlogPostContentProps {
 const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
   const renderContentBlock = (block: NotionBlock, index: number) => {
     switch (block.type) {
-      case "paragraph":
-        return (
-          <ParagraphBlock
-            key={index}
-            text={block.paragraph.rich_text[0].plain_text}
-          />
+      case 'paragraph':
+        const mappedRichText = mapRichText(block.paragraph.rich_text);
+        return <ParagraphBlock key={index} richTextElements={mappedRichText} />;
+      case 'bulleted_list_item':
+        const mappedBulletRichText = mapRichText(
+          block.bulleted_list_item.rich_text
         );
-      case "image":
+        return (
+          <BulletBlock key={index} richTextElements={mappedBulletRichText} />
+        );
+      case 'image':
         return (
           <ImageBlock
             key={index}
             src={block.image.file.url}
-            alt={block.image.caption[0]?.plain_text ?? "Inline image"}
+            alt={block.image.caption[0]?.plain_text ?? 'Inline image'}
           />
         );
-      case "heading_3":
+      case 'heading_3':
         return (
           <HeadingBlock
             key={index}
             text={block.heading_3.rich_text[0].plain_text}
           />
+        );
+      case 'code':
+        return (
+          <CodeBlock key={index} text={block.code.rich_text[0].plain_text} />
         );
       default:
         return null;
@@ -38,7 +48,9 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
   };
 
   return (
-    <div className="flex flex-col gap-8">{content.map(renderContentBlock)}</div>
+    <div className="flex flex-col gap-8 lg:w-[80%]">
+      {content.map(renderContentBlock)}
+    </div>
   );
 };
 

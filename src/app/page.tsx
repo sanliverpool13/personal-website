@@ -9,11 +9,11 @@ import { NotionApiResponse } from "@/types/notion";
 import LandingPageContainer from "@/components/LandingPageContainer";
 
 const HomePage: NextPage = async () => {
-  const databaseId = `${process.env.NOTION_BLOG_DB_ID}`;
-  const rawNotionDatabaseData = await fetchNotionData(databaseId);
-  const parsedNotionDatabaseData = await parseNotionData(
-    rawNotionDatabaseData as NotionApiResponse
-  );
+  // const databaseId = `${process.env.NOTION_BLOG_DB_ID}`;
+  // const rawNotionDatabaseData = await fetchNotionData(databaseId);
+  // const parsedNotionDatabaseData = await parseNotionData(
+  //   rawNotionDatabaseData as NotionApiResponse
+  // );
 
   return (
     <LandingPageContainer>
@@ -26,7 +26,8 @@ const HomePage: NextPage = async () => {
       />
       <LandingBlogSection
         key="blog-section"
-        blogPosts={parsedNotionDatabaseData.slice(0, 2)}
+        // blogPosts={parsedNotionDatabaseData.slice(0, 2)}
+        blogPosts={[]}
       />
       <LandingContactSection key="contact-section" />
     </LandingPageContainer>

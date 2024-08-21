@@ -10,11 +10,11 @@ import {
   NotionParagraphBlock,
   NotionBlock,
   NotionBlocksArray,
-} from "@/types/notion";
-import notion from "./notionClient";
-import { v2 as cloudinary } from "cloudinary";
-import { BlogPost } from "@/types/blogPost";
-import { formatDate } from "../helpers";
+} from '@/types/notion';
+import notion from './notionClient';
+import { v2 as cloudinary } from 'cloudinary';
+import { BlogPost } from '@/types/blogPost';
+import { formatDate } from '../helpers';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -27,12 +27,13 @@ export const fetchNotionData = async (databaseId: string) => {
   const response = await notion.databases.query({
     database_id: databaseId,
     filter: {
-      property: "Status",
+      property: 'Status',
       select: {
-        does_not_equal: "Draft",
+        does_not_equal: 'Draft',
       },
     },
   });
+  // console.log('database query response', response);
   return response;
 };
 
@@ -42,6 +43,9 @@ export const parseNotionData = async (
   const parsedNotionDataPromises =
     rawNotionDatabasePageData.results.map(parseNotionPage);
   const blogPosts = await Promise.all(parsedNotionDataPromises);
+  // console.log('parsed data into blog posts', blogPosts);
+  // I also need to save the page properties to the slug id map
+
   return blogPosts;
 };
 
@@ -58,7 +62,7 @@ export const parseNotionPage = async (page: NotionPage) => {
   const thumbnailProperty = page.properties.Thumbnail as {
     files: NotionFile[];
   };
-  const createdTime = page.properties["Created time"] as NotionCreatedTime;
+  const createdTime = page.properties['Created time'] as NotionCreatedTime;
 
   const imgBase64 = await downloadImageToBase64(
     thumbnailProperty.files[0]?.file?.url ?? null
@@ -68,20 +72,20 @@ export const parseNotionPage = async (page: NotionPage) => {
   return {
     id: page.id,
     title:
-      (page.properties.Name as NotionTitle)?.title[0]?.plain_text ?? "No Title",
+      (page.properties.Name as NotionTitle)?.title[0]?.plain_text ?? 'No Title',
     description: introProperty.rich_text[0]?.plain_text ?? null,
     slug: slugProperty.rich_text[0]?.plain_text ?? null,
     readTime: readTimeProperty.rich_text[0]?.plain_text ?? null,
     datePosted: formatDate(createdTime.created_time),
     imageUrl: cloudinaryImgUrl,
-    link: "",
+    link: '',
   };
 };
 
 export const downloadImageToBase64 = async (url: string): Promise<string> => {
   const res = await fetch(url);
   const result = await res.arrayBuffer();
-  const img = Buffer.from(result).toString("base64");
+  const img = Buffer.from(result).toString('base64');
   return img;
 };
 
@@ -92,13 +96,13 @@ export const uploadToCloudinary = async (
     `data:image/jpeg;base64,${imgBase64}`
   );
 
-  return imageExternalUrl ? imageExternalUrl : "";
+  return imageExternalUrl ? imageExternalUrl : '';
 };
 
 // Helper function to parse a single block
 const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
   switch (block.type) {
-    case "paragraph":
+    case 'paragraph':
       return {
         object: block.object,
         type: block.type,
@@ -106,7 +110,7 @@ const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
           rich_text: block.paragraph.rich_text,
         },
       };
-    case "image":
+    case 'image':
       const imgBase64 = await downloadImageToBase64(block.image.file.url);
       const cloudinaryImgUrl = await uploadToCloudinary(imgBase64);
       return {
@@ -119,12 +123,29 @@ const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
           caption: block.image.caption,
         },
       };
-    case "heading_3":
+    case 'heading_3':
       return {
         object: block.object,
         type: block.type,
         heading_3: {
           rich_text: block.heading_3.rich_text,
+        },
+      };
+    case 'code':
+      return {
+        object: block.object,
+        type: block.type,
+        code: {
+          caption: block.code.caption,
+          rich_text: block.code.rich_text,
+        },
+      };
+    case 'bulleted_list_item':
+      return {
+        object: block.object,
+        type: block.type,
+        bulleted_list_item: {
+          rich_text: block.bulleted_list_item.rich_text,
         },
       };
     default:
@@ -146,16 +167,25 @@ export const parseBlocks = async (
 };
 
 export const fetchBlockChildren = async (pageId: string) => {
+  let allBlocks: any[] = [];
+  let cursor = undefined;
   try {
-    const response = await notion.blocks.children.list({
-      block_id: pageId,
-    });
+    do {
+      const response = await notion.blocks.children.list({
+        start_cursor: cursor,
+        block_id: pageId,
+        page_size: 100,
+      });
 
-    const parsedBlocks = await parseBlocks(response.results);
+      allBlocks = allBlocks.concat(response.results);
+      cursor = response.has_more ? response.next_cursor : undefined;
+    } while (cursor);
+
+    const parsedBlocks = await parseBlocks(allBlocks);
 
     return parsedBlocks;
   } catch (error) {
-    console.error("Error fetching block children:", error);
+    console.error('Error fetching block children:', error);
     throw error;
   }
 };
@@ -166,7 +196,7 @@ export const fetchPage = async (pageId: string) => {
     const parsedResponse = await parseNotionPage(response as NotionPage);
     return parsedResponse;
   } catch (error) {
-    console.error("Error fetching page from Notion API:", error);
+    console.error('Error fetching page from Notion API:', error);
     throw error;
   }
 };

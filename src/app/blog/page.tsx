@@ -1,9 +1,10 @@
-import "server-only";
-import BlogPostsGrid from "@/components/blog/blogpostsgrid";
-import { fetchNotionData, parseNotionData } from "@/lib/notion/notionService";
-import { NotionApiResponse } from "@/types/notion";
-import SectionTitle from "@/components/general/sectiontitle";
-import LandingPageContainer from "@/components/LandingPageContainer";
+import 'server-only';
+import BlogPostsGrid from '@/components/blog/blogpostsgrid';
+import { fetchNotionData, parseNotionData } from '@/lib/notion/notionService';
+import { NotionApiResponse } from '@/types/notion';
+import SectionTitle from '@/components/general/sectiontitle';
+import LandingPageContainer from '@/components/LandingPageContainer';
+import { saveSlugIdMapToJson } from '@/lib/helpers';
 
 const BlogPage: React.FC = async () => {
   const databaseId = `${process.env.NOTION_BLOG_DB_ID}`;
@@ -11,6 +12,7 @@ const BlogPage: React.FC = async () => {
   const parsedNotionDatabaseData = await parseNotionData(
     rawNotionDatabaseData as NotionApiResponse
   );
+  saveSlugIdMapToJson(parsedNotionDatabaseData);
 
   return (
     <LandingPageContainer>

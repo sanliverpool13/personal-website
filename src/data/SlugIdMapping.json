@@ -1,6 +1,12 @@
 {
-  "Why-we-should-remove-cars-from-streetcar-streets-3": "6bd5854c-0e55-40d9-b874-e787acb67718",
-  "Why-we-should-remove-cars-from-streetcar-streets-2": "3ba5fa02-c519-4165-a958-c59b6cd511c4",
-  "Why-we-should-remove-cars-from-streetcar-streets-1": "d741604e-5b07-4377-8638-178ca4d24089",
-  "Why-we-should-remove-cars-from-streetcar-streets": "97285778-db46-45a4-b576-d8d7a6a5355d"
+  "how-to-build-portfolio-nextjs": {
+    "id": "c6741988-c346-4308-a322-75b329a063c4",
+    "title": "How To Build A Portfolio Website With Next.js And Deploy To Vercel Part I",
+    "description": "In this blog post I will go over how I built my personal website portfolio with Next.js 14, React, TypeScript, TailWind CSS and the Notion as the CMS.",
+    "slug": "how-to-build-portfolio-nextjs",
+    "readTime": "21 min read",
+    "datePosted": "July 17, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1724254447/qoe6jzavuqeelocxdffd.png",
+    "link": ""
+  }
 }

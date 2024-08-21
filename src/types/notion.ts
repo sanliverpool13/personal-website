@@ -30,16 +30,16 @@ export interface NotionPage {
 type NotionProperty =
   | {
       id: string;
-      type: "date";
+      type: 'date';
       date: { start: string; end: null | string; time_zone: null | string };
     }
-  | { id: string; type: "rich_text"; rich_text: NotionRichText[] }
-  | { id: string; type: "files"; files: NotionFile[] }
+  | { id: string; type: 'rich_text'; rich_text: NotionRichText[] }
+  | { id: string; type: 'files'; files: NotionFile[] }
   | NotionCreatedTime
   | NotionTitle;
 
 export interface NotionRichText {
-  type: "text";
+  type: 'text';
   text: {
     content: string;
     link: null | string;
@@ -58,13 +58,13 @@ export interface NotionRichText {
 
 export interface NotionCreatedTime {
   id: string;
-  type: "created_time";
+  type: 'created_time';
   created_time: string;
 }
 
 export interface NotionFile {
   name: string;
-  type: "file";
+  type: 'file';
   file: {
     url: string;
     expiry_time: string;
@@ -73,13 +73,13 @@ export interface NotionFile {
 
 export interface NotionTitle {
   id: string;
-  type: "title";
+  type: 'title';
   title: NotionRichText[];
 }
 
 export interface NotionParagraphBlock {
   object: string;
-  type: "paragraph";
+  type: 'paragraph';
   paragraph: {
     rich_text: NotionRichText[];
   };
@@ -87,7 +87,7 @@ export interface NotionParagraphBlock {
 
 export interface NotionImageBlock {
   object: string;
-  type: "image";
+  type: 'image';
   image: {
     file: {
       url: string;
@@ -98,8 +98,25 @@ export interface NotionImageBlock {
 
 export interface NotionHeading3Block {
   object: string;
-  type: "heading_3";
+  type: 'heading_3';
   heading_3: {
+    rich_text: NotionRichText[];
+  };
+}
+
+export interface NotionCodeBlock {
+  object: string;
+  type: 'code';
+  code: {
+    caption: NotionRichText[];
+    rich_text: NotionRichText[];
+  };
+}
+
+export interface NotionBulletBlock {
+  object: string;
+  type: 'bulleted_list_item';
+  bulleted_list_item: {
     rich_text: NotionRichText[];
   };
 }
@@ -107,6 +124,8 @@ export interface NotionHeading3Block {
 export type NotionBlock =
   | NotionParagraphBlock
   | NotionImageBlock
-  | NotionHeading3Block;
+  | NotionHeading3Block
+  | NotionCodeBlock
+  | NotionBulletBlock;
 
 export type NotionBlocksArray = NotionBlock[];

@@ -11,20 +11,18 @@ interface RichTextElement {
   link?: string;
 }
 
-interface ParagraphBlockProps {
+interface BulletBlockProps {
   richTextElements: RichTextElement[];
 }
 
-const ParagraphBlock: React.FC<ParagraphBlockProps> = ({
-  richTextElements,
-}) => {
+const BulletBlock: React.FC<BulletBlockProps> = ({ richTextElements }) => {
   return (
-    <motion.p
+    <motion.li
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
       variants={containerVariants}
-      className="text-xl"
+      className="text-xl leading-2"
     >
       {richTextElements.map((element, index) => {
         switch (element.type) {
@@ -34,6 +32,7 @@ const ParagraphBlock: React.FC<ParagraphBlockProps> = ({
                 key={index}
                 href={element.link}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-blue-500 underline"
               >
                 {element.text}
@@ -46,14 +45,18 @@ const ParagraphBlock: React.FC<ParagraphBlockProps> = ({
               </code>
             );
           case 'bold':
-            return <b key={index}>{element.text}</b>;
+            return (
+              <span key={index} className="font-bold">
+                {element.text}
+              </span>
+            );
           case 'text':
           default:
             return <span key={index}>{element.text}</span>;
         }
       })}
-    </motion.p>
+    </motion.li>
   );
 };
 
-export default ParagraphBlock;
+export default BulletBlock;

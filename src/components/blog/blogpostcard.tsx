@@ -1,13 +1,13 @@
-"use client";
-import Image from "next/image";
-import ButtonLink from "../general/buttonlink";
-import Link from "next/link";
-import SectionTitle from "../general/sectiontitle";
-import { motion } from "framer-motion";
+'use client';
+import Image from 'next/image';
+import ButtonLink from '../general/buttonlink';
+import Link from 'next/link';
+import SectionTitle from '../general/sectiontitle';
+import { motion } from 'framer-motion';
 import {
   containerVariants,
   containerVariantsWithDelay,
-} from "@/lib/framer-motion";
+} from '@/lib/framer-motion';
 
 interface BlogPostCardProps {
   post: {
@@ -28,9 +28,9 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
   return (
     <Link href={`/blog/${slug}`} legacyBehavior passHref>
       <a className="block cursor pointer">
-        <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-1">
-            <SectionTitle title={title} />
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-1 ">
+            <h2 className="md:text-3xl text-2xl font-bold">{title}</h2>
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -39,7 +39,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
               className="flex items-center gap-2"
             >
               <h5 className="text-md">{datePosted}</h5>
-              <span className="h-1 w-1 circle-separator-bg rounded-full"></span>
+              <span className="h-1 w-1 circle-separator-bg rounded-full" />
               <h5 className="text-md">{readTime}</h5>
             </motion.div>
           </div>
@@ -48,13 +48,14 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariantsWithDelay}
-            className="relative w-full lg:h-96 h-72"
+            className="relative w-full h-60"
           >
             <Image
               src={imageUrl}
               alt={title}
-              layout="fill"
-              objectFit="cover"
+              fill
+              // layout="fill"
+              // objectFit="cover"
               className="rounded-md"
             />
           </motion.div>
@@ -63,7 +64,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariantsWithDelay}
-            className="text-base leading-7"
+            className="text-xl leading-7"
           >
             {description}
           </motion.p>
