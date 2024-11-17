@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import React, { ReactNode, useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { ReactNode, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSun,
   faMoon,
   faBars,
   faTimes,
-} from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import { motion, useAnimation } from 'framer-motion';
+} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import { useTheme } from "next-themes";
+import { motion, useAnimation } from "framer-motion";
 
 const navigationLinks = [
-  { href: '/', text: 'Home' },
-  { href: '/about', text: 'About' },
-  { href: '/work', text: 'Work' },
-  { href: '/blog', text: 'Blog' },
-  { href: '/contact', text: 'Contact' },
+  { href: "/", text: "Home" },
+  { href: "/about", text: "About" },
+  { href: "/work", text: "Work" },
+  { href: "/blog", text: "Blog" },
+  { href: "/contact", text: "Contact" },
 ];
 
 const Navbar = () => {
@@ -31,10 +31,10 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Clean up the event listener on component unmount
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // useEffect only runs on the client, so now we can safely show the UI
@@ -48,8 +48,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`absolute top-0 w-full md:h-48 h-28 lg:px-48 md:px-24 px-6 ${
-        isScrolled ? 'bg-opacity-90' : 'bg-opacity-100'
+      className={`absolute top-0 w-full h-28 lg:px-48 md:px-24 px-8 ${
+        isScrolled ? "bg-opacity-90" : "bg-opacity-100"
       } transition-opacity duration-300`}
     >
       <div className="flex justify-between items-center h-full container mx-auto w-full max-w-5xl">
@@ -92,12 +92,12 @@ const NavLink = ({ href, text, index, onClick }: NavLinkProps) => {
   };
 
   return (
-    <li className={`p-2 ${index === 0 ? 'pl-0' : ''} `}>
+    <li className={`p-2 ${index === 0 ? "pl-0" : ""} `}>
       <Link
         href={href}
         passHref
-        className={`hover:opacity-50 transition-opacity duration-150 text-sm md:text-base leading-none ${
-          isActive ? 'font-extrabold' : ''
+        className={`hover:opacity-50 transition-opacity duration-150 text-base md:text-base leading-none ${
+          isActive ? "font-extrabold" : ""
         }`}
         onClick={handleClick}
       >
@@ -107,7 +107,7 @@ const NavLink = ({ href, text, index, onClick }: NavLinkProps) => {
             className="border-b-2 border-current"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
           />
         )}
       </Link>
@@ -128,13 +128,13 @@ const ThemeToggleButton = () => {
     await controls.start({
       opacity: 0,
       scale: 0,
-      transition: { duration: 0.15, ease: 'easeInOut' },
+      transition: { duration: 0.15, ease: "easeInOut" },
     });
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
     await controls.start({
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.15, ease: 'easeInOut' },
+      transition: { duration: 0.15, ease: "easeInOut" },
     });
   };
 
@@ -147,7 +147,7 @@ const ThemeToggleButton = () => {
         initial={{ opacity: 1, scale: 1 }}
         animate={controls}
       >
-        <FontAwesomeIcon icon={resolvedTheme === 'dark' ? faMoon : faSun} />
+        <FontAwesomeIcon icon={resolvedTheme === "dark" ? faMoon : faSun} />
       </motion.button>
     </div>
   );

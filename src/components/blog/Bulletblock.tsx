@@ -1,12 +1,12 @@
-'use client';
-import { motion } from 'framer-motion';
+"use client";
+import { motion } from "framer-motion";
 import {
   containerVariants,
   containerVariantsWithDelay,
-} from '@/lib/framer-motion';
+} from "@/lib/framer-motion";
 
 interface RichTextElement {
-  type: 'text' | 'link' | 'code' | 'bold';
+  type: "text" | "link" | "code" | "bold";
   text: string;
   link?: string;
 }
@@ -17,16 +17,17 @@ interface BulletBlockProps {
 
 const BulletBlock: React.FC<BulletBlockProps> = ({ richTextElements }) => {
   return (
-    <motion.li
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={containerVariants}
-      className="text-xl leading-2"
-    >
+    // <motion.li
+    //   initial="hidden"
+    //   whileInView="visible"
+    //   viewport={{ once: true }}
+    //   variants={containerVariants}
+    //   className="text-xl leading-2"
+    // >
+    <li className="text-xl leading-2">
       {richTextElements.map((element, index) => {
         switch (element.type) {
-          case 'link':
+          case "link":
             return (
               <a
                 key={index}
@@ -38,24 +39,25 @@ const BulletBlock: React.FC<BulletBlockProps> = ({ richTextElements }) => {
                 {element.text}
               </a>
             );
-          case 'code':
+          case "code":
             return (
               <code key={index} className="text-base bg-gray-200 p-0.5 rounded">
                 {element.text}
               </code>
             );
-          case 'bold':
+          case "bold":
             return (
               <span key={index} className="font-bold">
                 {element.text}
               </span>
             );
-          case 'text':
+          case "text":
           default:
             return <span key={index}>{element.text}</span>;
         }
       })}
-    </motion.li>
+    </li>
+    // {/* </motion.li> */}
   );
 };
 

@@ -1,12 +1,22 @@
 {
+  "node.js-worker-threads": {
+    "id": "137123fc-1fb0-804d-a603-f37e402a5bca",
+    "title": "Using Worker Threads for Parallel Execution in Node.js",
+    "description": "Going beyond Asynchronous operations in JavaScript with worker threads.",
+    "slug": "node.js-worker-threads",
+    "readTime": "4:50 min",
+    "datePosted": "November 7, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1731817171/r6psnwk3pvtgdcct4ihv.png",
+    "link": ""
+  },
   "websockets-race-condition-lq-pool": {
     "id": "130123fc-1fb0-800e-b772-fdb63dd61ba9",
-    "title": "Maintaining Local Data Integrity from Blockchain Liquidity Pools: Handling WebSocket Events and Race Conditions",
+    "title": "Maintaining Local Data Integrity: Handling WebSocket Events and Race Conditions",
     "description": "Establishing WebSockets to retrieve liquidity pool data and tackling race condition issue to maintain data reliability and integrity.",
     "slug": "websockets-race-condition-lq-pool",
     "readTime": "5 min",
     "datePosted": "October 31, 2024",
-    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1730503005/fvidof1avns9ssxnek0d.png",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1731817171/wwagm9sl4bv66lny9ebs.png",
     "link": ""
   },
   "how-to-build-portfolio-nextjs": {
@@ -16,7 +26,7 @@
     "slug": "how-to-build-portfolio-nextjs",
     "readTime": "21 min read",
     "datePosted": "July 17, 2024",
-    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1730503005/mwhqv2jfmg2avu6vsddi.png",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1731817171/ymhw5mijdfkhy1qriwvd.png",
     "link": ""
   }
 }

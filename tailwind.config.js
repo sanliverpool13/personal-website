@@ -17,6 +17,10 @@ module.exports = {
       borderRadius: {
         15: "15px", // You can name this custom key as you wish
       },
+      fontFamily: {
+        inter: ['"Inter"', "sans-serif"], // Default font
+        code: ['"IBM Plex Mono"', "serif"], // Custom font
+      },
     },
   },
   plugins: [],

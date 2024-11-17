@@ -8,14 +8,9 @@ interface SectionTitleProps {
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ title }) => {
   return (
-    <motion.div
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={containerVariants}
-    >
+    <div>
       <h2 className="md:text-5xl text-3xl font-bold">{title}</h2>
-    </motion.div>
+    </div>
   );
 };
 
