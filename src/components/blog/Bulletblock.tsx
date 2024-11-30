@@ -41,7 +41,10 @@ const BulletBlock: React.FC<BulletBlockProps> = ({ richTextElements }) => {
             );
           case "code":
             return (
-              <code key={index} className="text-base bg-gray-200 p-0.5 rounded">
+              <code
+                key={index}
+                className="code-bg px-1 text-base p-0.5 rounded"
+              >
                 {element.text}
               </code>
             );
