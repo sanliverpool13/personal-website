@@ -117,7 +117,6 @@ export const parseNotionPage = async (page: NotionPage) => {
   if (thumbnailUrl) {
     // Extract s3 object key
     const cacheKey = extractS3Key(thumbnailUrl);
-    console.log("cache key", cacheKey);
     // Step 1: Check the cache for the Cloudinary URL
     const cache = await readThumbnailCache();
     cloudinaryImgUrl = cache[cacheKey];
@@ -191,28 +190,6 @@ export const uploadBufferToCloudinary = async (
   });
 };
 
-// export const uploadToCloudinary = async (
-//   imgBase64: string,
-//   folderName: string
-// ): Promise<string> => {
-//   // Generate image hash
-//   const imageHash = generateImageHash(imgBase64);
-
-//   // Check if the image already exists in Cloudinary
-//   const existingImageUrl = await findImageByHash(imageHash);
-//   if (existingImageUrl) {
-//     console.log("Image already exists:", existingImageUrl);
-//     return existingImageUrl;
-//   }
-
-//   const { secure_url: imageExternalUrl } = await cloudinary.uploader.upload(
-//     `data:image/jpeg;base64,${imgBase64}`,
-//     { tags: [imageHash], folder: folderName }
-//   );
-
-//   return imageExternalUrl ? imageExternalUrl : "";
-// };
-
 // Helper function to parse a single block
 const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
   switch (block.type) {
@@ -229,7 +206,7 @@ const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
       // const cloudinaryImgUrl = await uploadToCloudinary(imgBase64, "portfolio");
       const thumbnailUrl = block.image.file
         ? block.image.file.url
-        : block.image.external;
+        : block.image.external.url;
       let cloudinaryImgUrl = null;
 
       if (thumbnailUrl) {

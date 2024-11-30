@@ -170,7 +170,6 @@ export interface NotionDivider {
 export type NotionBlock =
   | NotionParagraphBlock
   | NotionImageBlock
-  | NotionExternalImageBlock
   | NotionHeading3Block
   | NotionCodeBlock
   | NotionBulletBlock

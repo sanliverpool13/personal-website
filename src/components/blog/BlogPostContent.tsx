@@ -26,8 +26,6 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
           <BulletBlock key={index} richTextElements={mappedBulletRichText} />
         );
       case "image":
-        if (block.image.file) {
-        }
         return (
           <ImageBlock
             key={index}
@@ -49,7 +47,6 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
       case "quote":
         return <Quote key={index} text={block.quote.rich_text[0].plain_text} />;
       case "embed":
-        console.log("embed", block.embed);
         return <Embed key={index} url={block.embed.url} />;
       default:
         return null;
