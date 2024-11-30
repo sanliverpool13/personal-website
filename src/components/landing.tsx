@@ -23,11 +23,15 @@ const Landing = () => {
         <header className="space-y-4">
           <h1 className="text-2xl lg:text-4xl font-bold space-y-4">
             <span className="block">Hi, I&apos;m Sanjar.</span>
-            <span>A software engineer.</span>
+            <span>A software engineer based in Toronto.</span>
           </h1>
           <p className="text-base lg:text-xl">
-            I design and build things with code. I also write about stuff I find
-            interesting.
+            I love programming, sports, reading books, travelling and the list
+            goes on.
+          </p>
+          <p className="text-base lg:text-xl">
+            This website is my little corner on the web, where I build stuff and
+            write about topics I find interesting.
           </p>
         </header>
 

@@ -45,7 +45,7 @@ const ParagraphBlock: React.FC<ParagraphBlockProps> = ({
               return (
                 <code
                   key={index}
-                  className="text-base bg-gray-200 p-0.5 rounded"
+                  className="code-bg text-base p-0.5 rounded px-1"
                 >
                   {element.text}
                 </code>

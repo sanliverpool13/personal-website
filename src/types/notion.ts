@@ -30,16 +30,17 @@ export interface NotionPage {
 type NotionProperty =
   | {
       id: string;
-      type: 'date';
+      type: "date";
       date: { start: string; end: null | string; time_zone: null | string };
     }
-  | { id: string; type: 'rich_text'; rich_text: NotionRichText[] }
-  | { id: string; type: 'files'; files: NotionFile[] }
+  | { id: string; type: "rich_text"; rich_text: NotionRichText[] }
+  | { id: string; type: "files"; files: NotionFile[] }
+  | { id: string; type: "multi_select"; multi_select: NotionMultiSelect[] }
   | NotionCreatedTime
   | NotionTitle;
 
 export interface NotionRichText {
-  type: 'text';
+  type: "text";
   text: {
     content: string;
     link: null | string;
@@ -58,13 +59,19 @@ export interface NotionRichText {
 
 export interface NotionCreatedTime {
   id: string;
-  type: 'created_time';
+  type: "created_time";
   created_time: string;
+}
+
+export interface NotionDate {
+  id: string;
+  type: string;
+  date: { end?: string; start: string };
 }
 
 export interface NotionFile {
   name: string;
-  type: 'file';
+  type: "file";
   file: {
     url: string;
     expiry_time: string;
@@ -73,13 +80,19 @@ export interface NotionFile {
 
 export interface NotionTitle {
   id: string;
-  type: 'title';
+  type: "title";
   title: NotionRichText[];
+}
+
+export interface NotionMultiSelect {
+  color: string;
+  id: string;
+  name: string;
 }
 
 export interface NotionParagraphBlock {
   object: string;
-  type: 'paragraph';
+  type: "paragraph";
   paragraph: {
     rich_text: NotionRichText[];
   };
@@ -87,7 +100,7 @@ export interface NotionParagraphBlock {
 
 export interface NotionImageBlock {
   object: string;
-  type: 'image';
+  type: "image";
   image: {
     file: {
       url: string;
@@ -96,9 +109,20 @@ export interface NotionImageBlock {
   };
 }
 
+export interface NotionExternalImageBlock {
+  object: string;
+  type: "image";
+  image: {
+    type: string;
+    external: {
+      url: string;
+    };
+  };
+}
+
 export interface NotionHeading3Block {
   object: string;
-  type: 'heading_3';
+  type: "heading_3";
   heading_3: {
     rich_text: NotionRichText[];
   };
@@ -106,7 +130,7 @@ export interface NotionHeading3Block {
 
 export interface NotionCodeBlock {
   object: string;
-  type: 'code';
+  type: "code";
   code: {
     caption: NotionRichText[];
     rich_text: NotionRichText[];
@@ -115,17 +139,43 @@ export interface NotionCodeBlock {
 
 export interface NotionBulletBlock {
   object: string;
-  type: 'bulleted_list_item';
+  type: "bulleted_list_item";
   bulleted_list_item: {
     rich_text: NotionRichText[];
   };
 }
 
+export interface NotionEmbed {
+  object: string;
+  type: "embed";
+  embed: {
+    url: string;
+  };
+}
+
+export interface NotionQuote {
+  type: "quote";
+  quote: {
+    rich_text: NotionRichText[];
+    color: string;
+  };
+}
+
+export interface NotionDivider {
+  object: string;
+  type: "divider";
+  divider: {};
+}
+
 export type NotionBlock =
   | NotionParagraphBlock
   | NotionImageBlock
+  | NotionExternalImageBlock
   | NotionHeading3Block
   | NotionCodeBlock
-  | NotionBulletBlock;
+  | NotionBulletBlock
+  | NotionEmbed
+  | NotionDivider
+  | NotionQuote;
 
 export type NotionBlocksArray = NotionBlock[];

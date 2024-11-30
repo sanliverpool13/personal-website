@@ -9,7 +9,7 @@ const AboutPage: NextPage = () => {
   return (
     <LandingPageContainer>
       <AboutMe />
-      <TechStack />
+      {/* <TechStack /> */}
       <WorkExperience
         title="Work Experience"
         workExperiences={workExperiences}

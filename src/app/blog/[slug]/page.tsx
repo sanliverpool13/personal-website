@@ -1,11 +1,11 @@
-import 'server-only';
-import { fetchBlockChildren, fetchPage } from '@/lib/notion/notionService';
-import { getSlugIdMapFromJson } from '@/lib/helpers';
-import ButtonLink from '@/components/general/buttonlink';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
-import BlogPostContent from '@/components/blog/BlogPostContent';
-import BlogPostHeader from '@/components/blog/BlogPostHeader';
+import "server-only";
+import { fetchBlockChildren, fetchPage } from "@/lib/notion/notionService";
+import { getSlugIdMapFromJson } from "@/lib/helpers";
+import ButtonLink from "@/components/general/buttonlink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
+import BlogPostContent from "@/components/blog/BlogPostContent";
+import BlogPostHeader from "@/components/blog/BlogPostHeader";
 
 export const generateStaticParams = async () => {
   const SlugIdMap = await getSlugIdMapFromJson();
@@ -20,7 +20,7 @@ export const generateStaticParams = async () => {
 const getPost = async (params: { slug: string }) => {
   const SlugIdMap = await getSlugIdMapFromJson();
   const pageObject = SlugIdMap[params.slug];
-  const id = pageObject['id'];
+  const id = pageObject["id"];
   const pageContent = await fetchBlockChildren(id);
   return { pageContent, pageObject };
 };

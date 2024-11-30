@@ -5,9 +5,9 @@ interface CodeBlockProps {
 }
 const CodeBlock: React.FC<CodeBlockProps> = ({ text }) => {
   return (
-    <div className=" bg-gray-800  p-4 rounded overflow-x-scroll">
+    <div className="code-bg p-4 rounded overflow-x-scroll">
       <pre className="bg-inherit">
-        <code className="font-code bg-inherit text-white">{text}</code>
+        <code className="bg-inherit font-code">{text}</code>
       </pre>
     </div>
   );
