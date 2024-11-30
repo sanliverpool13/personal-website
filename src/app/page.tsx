@@ -24,12 +24,12 @@ const HomePage: NextPage = async () => {
         title="Recent Work Experience"
         workExperiences={workExperiences.slice(0, 2)}
       />
-      <LandingBlogSection
+      {/* <LandingBlogSection
         key="blog-section"
         // blogPosts={parsedNotionDatabaseData.slice(0, 2)}
         blogPosts={[]}
       />
-      <LandingContactSection key="contact-section" />
+      <LandingContactSection key="contact-section" /> */}
     </LandingPageContainer>
   );
 };

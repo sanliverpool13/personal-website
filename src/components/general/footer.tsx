@@ -23,9 +23,12 @@ const Footer = () => {
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
         </div>
-        <div>
-          <p className="text-center">Designed & Built by Sanjar Jelet</p>
-          <p className="text-center">&copy; 2024 Sanjar Jelet</p>
+        <div className="w-1/2 text-sm">
+          <p className="text-center">
+            Loosely inspired by other developer portfolio websites. Built with
+            Next.js and TawilWind CSS. Deployed on Vercel.
+          </p>
+          {/* <p className="text-center">&copy; 2024 Sanjar Jelet</p> */}
         </div>
       </div>
     </footer>

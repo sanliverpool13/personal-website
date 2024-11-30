@@ -19,7 +19,7 @@
   --skill-tile-dm-bg: #a67575;
   --alternate-bg: #efefef;
   --tag-text-color: rgba(0, 0, 0, 0.6); /* Light mode tag */
-  --bg-code: #18231b;
+  --bg-code: #f4f1ea;
 }
 
 [class="dark"] {
@@ -29,7 +29,7 @@
   --skill-tile-dm-bg: #222b24;
   --alternate-bg: #1d231f;
   --tag-text-color: rgba(189, 203, 194, 0.6);
-  --bg-code: #18231b;
+  --bg-code: #242c26;
 }
 
 * {
@@ -69,4 +69,8 @@
 
 .code-font {
   font-family: "IBM Plex Mono";
+}
+
+.code-bg {
+  background-color: var(--bg-code);
 }

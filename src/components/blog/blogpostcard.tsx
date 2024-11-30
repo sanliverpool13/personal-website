@@ -8,25 +8,32 @@ import {
   containerVariants,
   containerVariantsWithDelay,
 } from "@/lib/framer-motion";
+import { BlogPost } from "@/types/blogPost";
+import { capitalizeFirstLetter } from "@/lib/clientHelpers";
 
 interface BlogPostCardProps {
-  post: {
-    id: string;
-    title: string;
-    datePosted: string;
-    readTime: string;
-    imageUrl: string;
-    description: string;
-    link: string;
-    slug: string;
-  };
+  post: BlogPost;
 }
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({
-  post: { title, datePosted, readTime, imageUrl, description, link, slug, id },
+  post: {
+    title,
+    datePosted,
+    readTime,
+    imageUrl,
+    description,
+    link,
+    slug,
+    id,
+    categories,
+  },
 }) => {
-  const category = "Programming";
-  console.log(imageUrl);
+  // Define a color mapping for categories
+  // const categoryColors: Record<string, string> = {
+  //   programming: "bg-blue-100 text-blue-800",
+  //   business: "bg-green-100 text-green-800",
+  //   "personal growth": "bg-purple-100 text-purple-800",
+  // };
   return (
     <Link href={`/blog/${slug}`} legacyBehavior passHref>
       <a className="block cursor pointer">
@@ -35,22 +42,26 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
             <div className="relative w-full h-60 ">
               <Image src={imageUrl} alt={title} fill className="rounded-md" />
             </div>
-            <p className=" text-tag text-sm font-medium py-1 ">{category}</p>
+            {/* Render categories */}
+            <div className="flex gap-2">
+              {categories.map((category, index) => (
+                <p
+                  key={index}
+                  className={`text-xs font-semibold py-1 rounded ${
+                    // categoryColors[category.name.toLowerCase()] ||
+                    // "bg-gray-100 text-gray-800"
+                    " text-tag"
+                  }`}
+                >
+                  {capitalizeFirstLetter(category.name)}
+                </p>
+              ))}
+            </div>
+            {/* <p className=" text-tag text-sm font-medium py-1 ">{category}</p> */}
           </div>
 
           <div className="flex flex-col gap-1 ">
             <h2 className="md:text-2xl text-xl font-bold">{title}</h2>
-            {/* <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="flex items-center gap-2"
-            >
-              <h5 className="text-md">{datePosted}</h5>
-              <span className="h-1 w-1 circle-separator-bg rounded-full" />
-              <h5 className="text-md">{readTime}</h5>
-            </motion.div> */}
           </div>
 
           <p className="text-lg leading-7 text-tag">{description}</p>

@@ -7,6 +7,8 @@ export interface BlogPost {
   readTime: string;
   link: string;
   slug: string;
+  categories: category[];
+  date: string;
 }
 
 export interface BlogPostBody {
@@ -20,18 +22,22 @@ export interface BlogPostBody {
 export type ContentBlock = ParagraphBlock | ImageBlock;
 
 export interface ParagraphBlock {
-  type: 'paragraph';
+  type: "paragraph";
   text: string;
 }
 
 export interface ImageBlock {
-  type: 'image';
+  type: "image";
   src: string;
   alt: string;
 }
 
 export interface RichTextElement {
-  type: 'text' | 'link' | 'code' | 'bold';
+  type: "text" | "link" | "code" | "bold";
   text: string;
   link?: string;
+}
+
+interface category {
+  name: string;
 }

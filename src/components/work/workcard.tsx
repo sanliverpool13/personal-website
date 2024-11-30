@@ -29,8 +29,8 @@ const containerVariants2 = {
   visible: {
     opacity: 1,
     y: 0,
-    rotateY: -10,
-    skewY: -10,
+    // rotateY: -10,
+    // skewY: -10,
     transition: {
       duration: 1,
     },
@@ -67,7 +67,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
         viewport={{ once: true }}
         variants={isMd ? containerVariants2 : containerVariants1}
         className="relative border-8 h-48 md:h-auto rounded-15 shadow-lg"
-        style={{ transform: "rotateY(10deg)" }}
+        // style={{ transform: "rotateY(10deg)" }}
       >
         <Image
           src={imageSrc}

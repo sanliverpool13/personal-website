@@ -5,9 +5,15 @@
     "description": "Going beyond Asynchronous operations in JavaScript with worker threads.",
     "slug": "node.js-worker-threads",
     "readTime": "4:50 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
     "datePosted": "November 7, 2024",
-    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1731817171/r6psnwk3pvtgdcct4ihv.png",
-    "link": ""
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647773/portfolio/vc40fngfa6vvw6qviqhv.png",
+    "link": "",
+    "date": "2024-11-07"
   },
   "websockets-race-condition-lq-pool": {
     "id": "130123fc-1fb0-800e-b772-fdb63dd61ba9",
@@ -15,9 +21,15 @@
     "description": "Establishing WebSockets to retrieve liquidity pool data and tackling race condition issue to maintain data reliability and integrity.",
     "slug": "websockets-race-condition-lq-pool",
     "readTime": "5 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
     "datePosted": "October 31, 2024",
-    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1731817171/wwagm9sl4bv66lny9ebs.png",
-    "link": ""
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647772/portfolio/qozwhb7ib8klitwoj756.png",
+    "link": "",
+    "date": "2024-10-31"
   },
   "how-to-build-portfolio-nextjs": {
     "id": "c6741988-c346-4308-a322-75b329a063c4",
@@ -25,8 +37,209 @@
     "description": "In this blog post I will go over how I built my personal website portfolio with Next.js 14, React, TypeScript, TailWind CSS and the Notion as the CMS.",
     "slug": "how-to-build-portfolio-nextjs",
     "readTime": "21 min read",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
     "datePosted": "July 17, 2024",
-    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1731817171/ymhw5mijdfkhy1qriwvd.png",
-    "link": ""
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647773/portfolio/cilvp3hmndnripyd5wnj.png",
+    "link": "",
+    "date": "2024-07-28"
+  },
+  "css-flex-grow": {
+    "id": "147123fc-1fb0-8078-8afa-ca8b06af62d7",
+    "title": "Using CSS Flex-grow property",
+    "description": "The flex-grow property is great when you want to give some elements more space in a flex layout.",
+    "slug": "css-flex-grow",
+    "readTime": "3 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 23, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647772/portfolio/wyo4zk4qzuct3xlpeova.jpg",
+    "link": "",
+    "date": "2021-02-15"
+  },
+  "ev-nikola-case": {
+    "id": "146123fc-1fb0-8061-bc32-c6bf8b702187",
+    "title": "The Rise and Fall of Nikola",
+    "description": "A case of lies and fraud by a person and a company, capitalizing on the hype around electric cars.",
+    "slug": "ev-nikola-case",
+    "readTime": "9:20 min",
+    "categories": [
+      {
+        "name": "Business"
+      }
+    ],
+    "datePosted": "November 21, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647772/portfolio/nvrn3bwcltwx7xiitnba.jpg",
+    "link": "",
+    "date": "2021-02-15"
+  },
+  "css-start-rating": {
+    "id": "147123fc-1fb0-800c-8cdd-e0aaa23a5475",
+    "title": "How to use CSS and React to create a star rating",
+    "description": "I was working on a feature where user could give a rating. And I had to learn how to create a start rating.",
+    "slug": "css-start-rating",
+    "readTime": "3 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 23, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647773/portfolio/l3iuaetuk4adzjibtgvm.jpg",
+    "link": "",
+    "date": "2020-12-28"
+  },
+  "useffect-react-hook": {
+    "id": "147123fc-1fb0-8071-8b5b-dfa4ef87f5d0",
+    "title": "The beautiful useEffect React Hook",
+    "description": "If you are interested in learning a bit more about the useEffect react hook.",
+    "slug": "useffect-react-hook",
+    "readTime": "3 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 23, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647772/portfolio/y3ifoflxm4a0x0msyajj.jpg",
+    "link": "",
+    "date": "2020-12-09"
+  },
+  "github-actions": {
+    "id": "147123fc-1fb0-800d-a627-e95ef01430d2",
+    "title": "Using Github Actions with Repository Dispatch Event",
+    "description": "If you are curios about Github actions and the YAML file execution steps.",
+    "slug": "github-actions",
+    "readTime": "2 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 23, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647774/portfolio/hw38lw0fuxm25dbviejd.jpg",
+    "link": "",
+    "date": "2020-12-06"
+  },
+  "older-gatsby-website": {
+    "id": "147123fc-1fb0-80c8-bfa4-cc933e9453bf",
+    "title": "I built my personal website using Gatsby, Strapi, Heroku, Netlify and Github Actions",
+    "description": "In this post I go over how I utilized the different tools above to build my personal website.",
+    "slug": "older-gatsby-website",
+    "readTime": "10 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 23, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647774/portfolio/r6joxulcqtxdyeyrygfg.jpg",
+    "link": "",
+    "date": "2020-12-05"
+  },
+  "react-memo-hook": {
+    "id": "146123fc-1fb0-8021-8650-e2b9b85d856e",
+    "title": "Use React useMemo to make your code more efficient",
+    "description": "The React useMemo hook can be utilized to avoid unecessary calculations on every render of your component.",
+    "slug": "react-memo-hook",
+    "readTime": "3 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 22, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647747/portfolio/cjqc1mkb1n1gl2ss9w5u.jpg",
+    "link": "",
+    "date": "2020-11-30"
+  },
+  "unread-books-value": {
+    "id": "146123fc-1fb0-80a8-a328-fae8f9ba8265",
+    "title": "Why you should own more books than you can read",
+    "description": "I used to believe having too many unread books is not good. I have changed my mind.",
+    "slug": "unread-books-value",
+    "readTime": "2 min",
+    "categories": [
+      {
+        "name": "Books"
+      },
+      {
+        "name": "Personal Growth"
+      }
+    ],
+    "datePosted": "November 22, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647774/portfolio/cgk468vmpbqt5g8gtchj.jpg",
+    "link": "",
+    "date": "2020-11-17"
+  },
+  "box-shadows-css": {
+    "id": "147123fc-1fb0-8018-9afb-d7d17f150d71",
+    "title": "Use Box Shadows to Bring Your Html Elements to Life",
+    "description": "The CSS property box-shadow and its uses are explained. ",
+    "slug": "box-shadows-css",
+    "readTime": "3 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 23, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647774/portfolio/zyr9ywl1zh1ek1unxlvz.jpg",
+    "link": "",
+    "date": "2020-11-15"
+  },
+  "react-context-dark-mode": {
+    "id": "147123fc-1fb0-8070-a5ef-c24cfce1d830",
+    "title": "I used React Context To Enable Dark Mode",
+    "description": "I added the dark mode option to my website. I explain how I used React Context to accomplish that.",
+    "slug": "react-context-dark-mode",
+    "readTime": "5 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 23, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647773/portfolio/iptsienbd900gqpyl6lt.png",
+    "link": "",
+    "date": "2020-10-29"
+  },
+  "footer-to-bottom": {
+    "id": "146123fc-1fb0-805d-8db5-d1a88bc13574",
+    "title": "Footer Stuck To Bottom Of Page With Html, Css",
+    "description": "I wanted the footer to always stick to the bottom of the viewport, regardless of the height of the content. I used pure Html and CSS for that.",
+    "slug": "footer-to-bottom",
+    "readTime": "3 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 21, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647772/portfolio/pkapxwe6ldkltxc53qy2.png",
+    "link": "",
+    "date": "2020-09-18"
+  },
+  "custom-hook-scroll": {
+    "id": "146123fc-1fb0-809b-9cbb-f6f807237907",
+    "title": "Custom Hook For Scroll Direction",
+    "description": "I wrote a custom hook to determine the scrolling direction of the user. I used that to hide or show the navigation bar.",
+    "slug": "custom-hook-scroll",
+    "readTime": "3 min",
+    "categories": [
+      {
+        "name": "Programming"
+      }
+    ],
+    "datePosted": "November 21, 2024",
+    "imageUrl": "https://res.cloudinary.com/duopaxqyf/image/upload/v1732647773/portfolio/viagdxwkshoewrnswqcu.png",
+    "link": "",
+    "date": "2020-09-10"
   }
 }

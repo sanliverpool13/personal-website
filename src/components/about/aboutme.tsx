@@ -82,22 +82,37 @@ const AboutMe = () => {
           variants={containerVariantsWithDelay}
           className="md:col-start-5 md:col-span-6 flex flex-col text-xl leading-8 text-justify md:space-y-4 space-y-2"
         >
-          <h2 className="font-bold text-3xl">
-            I&apos;m a software engineer currently based in Toronto.
-          </h2>
           <p>
-            I have been building web apps for the past 5 years. I enjoy building
-            both the frontend and backend.
+            I&apos;m a developer with a passion for creating meaningful
+            projects, both on the frontend and backend. Since graduating in
+            2019, I&apos;ve been working as a software engineer, building
+            solutions that make an impact.
           </p>
           <p>
-            I read a lot of books in my free time, mostly sci-fi, fantasy and
-            non-fiction about tech. I love to run and exercise and have gotten
-            into hiking and calisthenics recently. I have played highly
-            competitive soccer my entire life and am an avid Liverpool fan!
+            Beyond coding, I&apos;m deeply passionate about sports and books. I
+            could spend a whole day watching soccer or NFL, or reading an epic
+            fantasy book.
           </p>
           <p>
-            This website is my little corner on the web, where I will shocase my
-            skills and write a blog.
+            I&apos;m also endlessly curious about how people live their lives in
+            different parts of the world. Traveling with my girlfriend allows us
+            to explore, experience new cultures, and satisfy that curiosity. You
+            can check out our adventures on{" "}
+            <a
+              href="https://www.jeletadventures.com/"
+              target="_blank"
+              className="text-blue-500 underline hover:text-blue-700 transition duration-200"
+            >
+              our website
+            </a>
+            .
+          </p>
+          <p>
+            This website is my little corner of the internet where I share the
+            things I create and write about topics that inspire me. I&apos;m
+            constantly updating and redesigning it—not just to make it look
+            better but also to learn and grow as a developer along the way. Hope
+            you enjoy it!
           </p>
         </motion.div>
       </div>
