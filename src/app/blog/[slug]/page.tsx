@@ -1,4 +1,3 @@
-import "server-only";
 import { fetchBlockChildren} from "@/lib/notion/notionService";
 import {  getSlugIdMapFromRedis } from "@/lib/helpers";
 import ButtonLink from "@/components/general/buttonlink";
@@ -7,16 +6,19 @@ import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import BlogPostContent from "@/components/blog/BlogPostContent";
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
 
+
 export const generateStaticParams = async () => {
-  // const SlugIdMap = await getSlugIdMapFromJson();
-  const SlugIdMap = await getSlugIdMapFromRedis();
-  const paths = Array.from(Object.keys(SlugIdMap as object)).map((slug) => ({
-    params: {
-      slug: slug,
-    },
+  // Pre-populated static data from Redis
+  const slugIdMap = await getSlugIdMapFromRedis();
+
+  if (!slugIdMap) {
+    throw new Error("Redis is not pre-populated with slug data.");
+  }
+
+  return Object.keys(slugIdMap).map((slug) => ({
+    slug,
   }));
-  return paths;
-};
+}
 
 const getPost = async (params: { slug: string }) => {
   // const SlugIdMap = await getSlugIdMapFromJson();
