@@ -10,6 +10,8 @@ import {
   NotionParagraphBlock,
   NotionRichText,
 } from "@/types/notion";
+import redis from "@/lib/redis"
+import { v2 as cloudinary } from "cloudinary";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
@@ -113,6 +115,16 @@ export const readThumbnailCache = async () => {
   }
 };
 
+export const readThumbnailRedisCache = async () => {
+  const cache = await redis.get("thumbnailCache");
+  return cache || {};
+}
+
+export const updateThumbnailRedisCache = async(key: string, value: string) => {
+  // Update the Redis cache with a new Cloudinary URL
+  await redis.hset("thumbnailCache", { [key]: value });
+}
+
 export const updateThumbnailCache = async (cache: Record<string, string>) => {
   try {
     await fsPromises.writeFile(
@@ -150,4 +162,62 @@ export const clearCacheFile = () => {
   } catch (error) {
     console.error(`Error clearing cache file at ${filePath}:`, error);
   }
+};
+
+export const getCloudinaryThumbnail = async (thumbnailUrl: string | null): Promise<string> => {
+  if(!thumbnailUrl) return '';
+
+  // Step 1: Extract the S3 Object key
+  const cacheKey = extractS3Key(thumbnailUrl);
+
+  let cloudinaryImgUrl = await redis.hget("thumbnailCache", cacheKey);
+
+
+  if(!cloudinaryImgUrl){
+    // Step 3: Download the image from AWS
+    const imageBuffer = await downloadImageFromAWS(thumbnailUrl);
+
+    // Step 4: Upload the buffer to Cloudinary
+    cloudinaryImgUrl = await uploadBufferToCloudinary(imageBuffer, "portfolio");
+
+    // Step 5: Update the Redis cache
+    await redis.hset("thumbnailCache", { [cacheKey]: cloudinaryImgUrl });
+  }
+  return `${cloudinaryImgUrl}`;
+}
+
+export const downloadImageToBase64 = async (url: string): Promise<string> => {
+  const res = await fetch(url);
+  const result = await res.arrayBuffer();
+  const img = Buffer.from(result).toString("base64");
+  return img;
+};
+
+export const downloadImageFromAWS = async (awsUrl: string): Promise<Buffer> => {
+  const response = await fetch(awsUrl, {
+    cache: "no-store", // Disable caching
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to fetch resource ${response.statusText}`);
+  }
+  const arrayBuffer = await response.arrayBuffer();
+  return Buffer.from(arrayBuffer);
+};
+
+export const uploadBufferToCloudinary = async (
+  imageBuffer: Buffer,
+  folderName: string
+): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { folder: folderName },
+      (error, result) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(result?.secure_url || "");
+      }
+    );
+    uploadStream.end(imageBuffer);
+  });
 };

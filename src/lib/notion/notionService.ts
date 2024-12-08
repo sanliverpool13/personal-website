@@ -16,10 +16,11 @@ import {
 import notion from "./notionClient";
 import { v2 as cloudinary } from "cloudinary";
 import { BlogPost } from "@/types/blogPost";
-import { extractS3Key, formatDate } from "../helpers";
+import { extractS3Key, formatDate, getCloudinaryThumbnail, updateThumbnailRedisCache } from "../helpers";
 import crypto from "crypto";
 import fs from "fs";
 import { readThumbnailCache, updateThumbnailCache } from "../helpers";
+import redis from "../redis";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -105,39 +106,8 @@ export const parseNotionPage = async (page: NotionPage) => {
 
   const date = page.properties.Date as NotionDate;
 
-  // const imgBase64 = await downloadImageToBase64(
-  //   thumbnailProperty.files[0]?.file?.url ?? null
-  // );
-  // const cloudinaryImgUrl = await uploadToCloudinary(imgBase64, "portfolio");
-
   const thumbnailUrl = thumbnailProperty.files[0]?.file?.url ?? null;
-
-  let cloudinaryImgUrl = null;
-
-  if (thumbnailUrl) {
-    // Extract s3 object key
-    const cacheKey = extractS3Key(thumbnailUrl);
-    // Step 1: Check the cache for the Cloudinary URL
-    const cache = await readThumbnailCache();
-    cloudinaryImgUrl = cache[cacheKey];
-    // console.log("retrieved cld url", cloudinaryImgUrl);
-
-    if (!cloudinaryImgUrl) {
-      // console.log("no cloudinary url");
-      // Step 2: Download the image from AWS
-      const imageBuffer = await downloadImageFromAWS(thumbnailUrl);
-
-      // Step 3: Upload the buffer to Cloudinary
-      cloudinaryImgUrl = await uploadBufferToCloudinary(
-        imageBuffer,
-        "portfolio"
-      );
-
-      // Step 4: Update the cache
-      cache[cacheKey] = cloudinaryImgUrl;
-      await updateThumbnailCache(cache);
-    }
-  }
+  const cloudinaryImgUrl = await getCloudinaryThumbnail(thumbnailUrl);
 
   return {
     id: page.id,
@@ -154,41 +124,7 @@ export const parseNotionPage = async (page: NotionPage) => {
   };
 };
 
-export const downloadImageToBase64 = async (url: string): Promise<string> => {
-  const res = await fetch(url);
-  const result = await res.arrayBuffer();
-  const img = Buffer.from(result).toString("base64");
-  return img;
-};
 
-export const downloadImageFromAWS = async (awsUrl: string): Promise<Buffer> => {
-  const response = await fetch(awsUrl, {
-    cache: "no-store", // Disable caching
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch resource ${response.statusText}`);
-  }
-  const arrayBuffer = await response.arrayBuffer();
-  return Buffer.from(arrayBuffer);
-};
-
-export const uploadBufferToCloudinary = async (
-  imageBuffer: Buffer,
-  folderName: string
-): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: folderName },
-      (error, result) => {
-        if (error) {
-          return reject(error);
-        }
-        resolve(result?.secure_url || "");
-      }
-    );
-    uploadStream.end(imageBuffer);
-  });
-};
 
 // Helper function to parse a single block
 const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
@@ -207,31 +143,8 @@ const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
       const thumbnailUrl = block.image.file
         ? block.image.file.url
         : block.image.external.url;
-      let cloudinaryImgUrl = null;
+      let cloudinaryImgUrl = await getCloudinaryThumbnail(thumbnailUrl);
 
-      if (thumbnailUrl) {
-        // Step 1: Extract the S3 object key
-        const cacheKey = extractS3Key(thumbnailUrl);
-
-        // Step 2: Check the cache for the Cloudinary URL
-        const cache = await readThumbnailCache();
-        cloudinaryImgUrl = cache[cacheKey];
-
-        if (!cloudinaryImgUrl) {
-          // Step 3: Download the image from AWS
-          const imageBuffer = await downloadImageFromAWS(thumbnailUrl);
-
-          // Step 4: Upload the buffer to Cloudinary
-          cloudinaryImgUrl = await uploadBufferToCloudinary(
-            imageBuffer,
-            "portfolio"
-          );
-
-          // Step 5: Update the cache
-          cache[cacheKey] = cloudinaryImgUrl;
-          await updateThumbnailCache(cache);
-        }
-      }
       return {
         object: block.object,
         type: block.type,
