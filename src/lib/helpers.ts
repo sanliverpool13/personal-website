@@ -31,7 +31,7 @@ export const getSlugIdMapFromRedis = async () => {
   try {
     const slugIdMap = await redis.get("slugIdMap");
 
-    return slugIdMap ? JSON.parse(slugIdMap as string) : {};
+    return slugIdMap ? JSON.parse(JSON.stringify(slugIdMap) as string) : {};
   } catch (error) {
     console.log(error);
   }

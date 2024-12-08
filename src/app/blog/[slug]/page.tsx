@@ -10,7 +10,7 @@ import BlogPostHeader from "@/components/blog/BlogPostHeader";
 export const generateStaticParams = async () => {
   // const SlugIdMap = await getSlugIdMapFromJson();
   const SlugIdMap = await getSlugIdMapFromRedis();
-  const paths = Array.from(Object.keys(SlugIdMap)).map((slug) => ({
+  const paths = Array.from(Object.keys(SlugIdMap as object)).map((slug) => ({
     params: {
       slug: slug,
     },
