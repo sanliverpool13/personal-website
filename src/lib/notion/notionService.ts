@@ -5,9 +5,6 @@ import {
   NotionFile,
   NotionTitle,
   NotionCreatedTime,
-  NotionHeading3Block,
-  NotionImageBlock,
-  NotionParagraphBlock,
   NotionBlock,
   NotionBlocksArray,
   NotionMultiSelect,
@@ -16,11 +13,9 @@ import {
 import notion from "./notionClient";
 import { v2 as cloudinary } from "cloudinary";
 import { BlogPost } from "@/types/blogPost";
-import { extractS3Key, formatDate, getCloudinaryThumbnail, updateThumbnailRedisCache } from "../helpers";
+import {  formatDate, getCloudinaryThumbnail} from "../helpers";
 import crypto from "crypto";
-import fs from "fs";
-import { readThumbnailCache, updateThumbnailCache } from "../helpers";
-import redis from "../redis";
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
