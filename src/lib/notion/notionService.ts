@@ -28,24 +28,6 @@ export const generateImageHash = (base64Image: string) => {
   return crypto.createHash("sha256").update(base64Image).digest("hex");
 };
 
-// export const findImageByHash = async (hash: string) => {
-//   if (imageDb[hash]) {
-//     console.log("Cache hit in file for hash:", hash);
-//     return imageDb[hash];
-//   }
-//   const result = await cloudinary.search.expression(`tags=${hash}`).execute();
-
-//   const secureUrl =
-//     result.resources.length > 0 ? result.resources[0].secure_url : null;
-
-//   if (secureUrl) {
-//     imageDb[hash] = secureUrl;
-//     fs.writeFileSync(imageDbPath, JSON.stringify(imageDb, null, 2));
-//   }
-
-//   return secureUrl;
-// };
-
 export const fetchNotionData = async (databaseId: string) => {
   const response = await notion.databases.query({
     database_id: databaseId,

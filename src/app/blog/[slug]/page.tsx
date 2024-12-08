@@ -1,6 +1,6 @@
 import "server-only";
-import { fetchBlockChildren, fetchPage } from "@/lib/notion/notionService";
-import { getSlugIdMapFromJson } from "@/lib/helpers";
+import { fetchBlockChildren} from "@/lib/notion/notionService";
+import {  getSlugIdMapFromRedis } from "@/lib/helpers";
 import ButtonLink from "@/components/general/buttonlink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
@@ -8,8 +8,9 @@ import BlogPostContent from "@/components/blog/BlogPostContent";
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
 
 export const generateStaticParams = async () => {
-  const SlugIdMap = await getSlugIdMapFromJson();
-  const paths = Array.from(Object.keys(SlugIdMap)).map((slug) => ({
+  // const SlugIdMap = await getSlugIdMapFromJson();
+  const SlugIdMap = await getSlugIdMapFromRedis();
+  const paths = Array.from(Object.keys(SlugIdMap as object)).map((slug) => ({
     params: {
       slug: slug,
     },
@@ -18,7 +19,8 @@ export const generateStaticParams = async () => {
 };
 
 const getPost = async (params: { slug: string }) => {
-  const SlugIdMap = await getSlugIdMapFromJson();
+  // const SlugIdMap = await getSlugIdMapFromJson();
+  const SlugIdMap = await getSlugIdMapFromRedis();
   const pageObject = SlugIdMap[params.slug];
   const id = pageObject["id"];
   const pageContent = await fetchBlockChildren(id);
