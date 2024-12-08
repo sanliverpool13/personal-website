@@ -21,11 +21,6 @@ const getSlugIdMapFilePath = () =>
     ? path.join(os.tmpdir(), "SlugIdMapping.json") // Development: Use /tmp
     : path.join(process.cwd(), "src", "data", "SlugIdMapping.json"); // Production: Use src/data
 
-const getImageAssetsFilePath = () =>
-  isDevelopment
-    ? path.join(os.tmpdir(), "imageAssetsCloudinary.json") // Development: use /tmp
-    : path.join(process.cwd(), "src", "data", "imageAssetsCloudinary.json"); // Production: use src/data
-
 export const saveSlugIdMapToJson = (parsedNotionDatabasePages: BlogPost[]) => {
   try {
     const SlugIdMapping = parsedNotionDatabasePages.reduce<
@@ -102,18 +97,6 @@ export const mapRichText = (richText: NotionRichText[]): RichTextElement[] => {
   return mappedRichText;
 };
 
-// Use `/tmp` in development and `/src/data` in production
-const cacheFilePath = getImageAssetsFilePath();
-
-export const readThumbnailCache = async () => {
-  try {
-    const data = await fsPromises.readFile(cacheFilePath, "utf-8");
-    return JSON.parse(data);
-  } catch (error) {
-    console.error("Error reading thumbnail cache:", error);
-    return {};
-  }
-};
 
 export const readThumbnailRedisCache = async () => {
   const cache = await redis.get("thumbnailCache");
@@ -125,17 +108,6 @@ export const updateThumbnailRedisCache = async(key: string, value: string) => {
   await redis.hset("thumbnailCache", { [key]: value });
 }
 
-export const updateThumbnailCache = async (cache: Record<string, string>) => {
-  try {
-    await fsPromises.writeFile(
-      cacheFilePath,
-      JSON.stringify(cache, null, 2),
-      "utf-8"
-    );
-  } catch (error) {
-    console.error("Error updating thumbnail cache:", error);
-  }
-};
 
 export const extractS3Key = (awsUrl: any): string => {
   let url;
@@ -146,22 +118,6 @@ export const extractS3Key = (awsUrl: any): string => {
   }
   // Extract the path portion of the URL (everything after the bucket name)
   return url.pathname;
-};
-
-export const clearCacheFile = () => {
-  const filePath = getImageAssetsFilePath();
-
-  try {
-    if (fs.existsSync(filePath)) {
-      // Clear the file by overwriting it with an empty JSON object
-      fs.writeFileSync(filePath, JSON.stringify({}, null, 2), "utf8");
-      console.log(`Cleared contents of ${filePath}`);
-    } else {
-      console.log(`${filePath} does not exist, nothing to clear.`);
-    }
-  } catch (error) {
-    console.error(`Error clearing cache file at ${filePath}:`, error);
-  }
 };
 
 export const getCloudinaryThumbnail = async (thumbnailUrl: string | null): Promise<string> => {
