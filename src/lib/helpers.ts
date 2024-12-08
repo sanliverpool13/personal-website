@@ -1,71 +1,42 @@
-import fs from "fs";
-import fsPromises from "fs/promises";
-import path from "path";
-import os from "os";
 import { BlogPost } from "@/types/blogPost";
-import { SLUGIDMAPFILE } from "@/constants";
 import { RichTextElement } from "@/types/blogPost";
 import {
-  NotionBulletBlock,
-  NotionParagraphBlock,
+ 
   NotionRichText,
 } from "@/types/notion";
 import redis from "@/lib/redis"
 import { v2 as cloudinary } from "cloudinary";
 
-const isDevelopment = process.env.NODE_ENV === "development";
 
-// Dynamically resolve the file path based on the environment
-const getSlugIdMapFilePath = () =>
-  isDevelopment
-    ? path.join(os.tmpdir(), "SlugIdMapping.json") // Development: Use /tmp
-    : path.join(process.cwd(), "src", "data", "SlugIdMapping.json"); // Production: Use src/data
-
-export const saveSlugIdMapToJson = (parsedNotionDatabasePages: BlogPost[]) => {
+export const saveSlugIdMapRedis = async (parsedNotionDatabasePages: BlogPost[]) => {
   try {
-    const SlugIdMapping = parsedNotionDatabasePages.reduce<
-      Record<string, BlogPost>
-    >((acc, page) => {
-      acc[page.slug] = page;
-      return acc;
-    }, {});
+    // Transform the parsed pages into a Slug ID map
+    const slugIdMap = parsedNotionDatabasePages.reduce<Record<string, BlogPost>>(
+      (acc, page) => {
+        acc[page.slug] = page;
+        return acc;
+      },
+      {}
+    );
 
-    // Define the path to the JSON file
-    const filePath = getSlugIdMapFilePath();
-
-    // Write the mapping to a JSON file
-    fs.writeFileSync(filePath, JSON.stringify(SlugIdMapping, null, 2));
+    // Save the map to Redis
+    await redis.set("slugIdMap", JSON.stringify(slugIdMap));
+    console.log("saved slug id to reddis")
   } catch (error) {
-    throw new Error("Failed to write to file");
+    console.log(error);
   }
-};
+}
 
-export const getSlugIdMapFromJson = async () => {
-  // const filePath = path.join(process.cwd(), "src", "data", `${SLUGIDMAPFILE}`);
-  const filePath = getSlugIdMapFilePath();
-  const jsonData = fs.readFileSync(filePath, "utf8");
-  const slugIdMapping = JSON.parse(jsonData);
+export const getSlugIdMapFromRedis = async () => {
+  try {
+    const slugIdMap = await redis.get("slugIdMap");
 
-  return slugIdMapping;
-};
-
-export const deleteSlugIdMapJson = async () => {
-  // const filePath = path.resolve(
-  //   process.cwd(),
-  //   "src",
-  //   "data",
-  //   `${SLUGIDMAPFILE}`
-  // );
-  const filePath = getSlugIdMapFilePath();
-
-  // Check if the file exists before trying to delete
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
-    console.log("SlugIdMapping.json has been deleted");
-  } else {
-    console.log("SlugIdMapping.json does not exist, nothing to delete");
+    return slugIdMap ? JSON.parse(slugIdMap as string) : {};
+  } catch (error) {
+    console.log(error);
   }
-};
+}
+
 
 export const formatDate = (dateString: string) => {
   const date = new Date(dateString);

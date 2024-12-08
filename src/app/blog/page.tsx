@@ -4,7 +4,7 @@ import { fetchNotionData, parseNotionData } from "@/lib/notion/notionService";
 import { NotionApiResponse } from "@/types/notion";
 import SectionTitle from "@/components/general/sectiontitle";
 import LandingPageContainer from "@/components/LandingPageContainer";
-import { saveSlugIdMapToJson } from "@/lib/helpers";
+import {  saveSlugIdMapRedis } from "@/lib/helpers";
 
 const BlogPage: React.FC = async () => {
   const databaseId = `${process.env.NOTION_BLOG_DB_ID}`;
@@ -13,7 +13,8 @@ const BlogPage: React.FC = async () => {
     rawNotionDatabaseData as NotionApiResponse
   );
   // clearCacheFile();
-  saveSlugIdMapToJson(parsedNotionDatabaseData);
+  // saveSlugIdMapToJson(parsedNotionDatabaseData);
+  saveSlugIdMapRedis(parsedNotionDatabaseData);
 
   return (
     <LandingPageContainer>
