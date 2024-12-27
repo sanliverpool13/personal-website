@@ -21,7 +21,6 @@ export const generateStaticParams = async () => {
 }
 
 const getPost = async (params: { slug: string }) => {
-  // const SlugIdMap = await getSlugIdMapFromJson();
   const SlugIdMap = await getSlugIdMapFromRedis();
   const pageObject = SlugIdMap[params.slug];
   const id = pageObject["id"];

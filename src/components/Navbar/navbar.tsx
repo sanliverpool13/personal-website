@@ -12,12 +12,14 @@ import {
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { motion, useAnimation } from "framer-motion";
+import { hrtime } from "process";
 
 const navigationLinks = [
   { href: "/", text: "Home" },
   { href: "/about", text: "About" },
   { href: "/work", text: "Work" },
   { href: "/blog", text: "Blog" },
+  { href: "/projects", text: "Projects" },
   { href: "/contact", text: "Contact" },
 ];
 
