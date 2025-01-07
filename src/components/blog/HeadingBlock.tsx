@@ -18,7 +18,7 @@ const HeadingBlock: React.FC<HeadingBlockProps> = ({ text }) => {
     //   variants={containerVariants}
     //   className="text-3xl font-bold"
     // >
-    <h3 className="text-3xl font-bold">{text}</h3>
+    <h3 className="text-3xl font-bold mt-6">{text}</h3>
     // {/* </motion.h3> */}
   );
 };

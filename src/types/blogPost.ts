@@ -9,6 +9,7 @@ export interface BlogPost {
   slug: string;
   categories: category[];
   date: string;
+  lastEditedTime: string;
 }
 
 export interface BlogPostBody {

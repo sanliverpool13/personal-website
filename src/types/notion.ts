@@ -37,7 +37,9 @@ type NotionProperty =
   | { id: string; type: "files"; files: NotionFile[] }
   | { id: string; type: "multi_select"; multi_select: NotionMultiSelect[] }
   | NotionCreatedTime
-  | NotionTitle;
+  | NotionTitle
+  | NotionLastEditedTime
+  | NotionDate;
 
 export interface NotionRichText {
   type: "text";
@@ -88,6 +90,12 @@ export interface NotionMultiSelect {
   color: string;
   id: string;
   name: string;
+}
+
+export interface NotionLastEditedTime {
+  id: string;
+  type: "last_edited_time";
+  last_edited_time: string;
 }
 
 export interface NotionParagraphBlock {

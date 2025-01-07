@@ -1,11 +1,10 @@
-import { fetchBlockChildren} from "@/lib/notion/notionService";
-import {  getSlugIdMapFromRedis } from "@/lib/helpers";
+import { fetchBlockChildren } from "@/lib/notion/notionService";
+import { getSlugIdMapFromRedis } from "@/lib/helpers";
 import ButtonLink from "@/components/general/buttonlink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import BlogPostContent from "@/components/blog/BlogPostContent";
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
-
 
 export const generateStaticParams = async () => {
   // Pre-populated static data from Redis
@@ -18,7 +17,7 @@ export const generateStaticParams = async () => {
   return Object.keys(slugIdMap).map((slug) => ({
     slug,
   }));
-}
+};
 
 const getPost = async (params: { slug: string }) => {
   const SlugIdMap = await getSlugIdMapFromRedis();
@@ -31,7 +30,7 @@ const getPost = async (params: { slug: string }) => {
 const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   const { pageObject: blogPostDetails, pageContent: blogPostContent } =
     await getPost(params);
-  const { title, datePosted, readTime } = blogPostDetails;
+  const { title, datePosted, readTime, lastEditedTime } = blogPostDetails;
 
   return (
     <div className="flex flex-col gap-16 mx-auto w-full max-w-5xl">
@@ -39,18 +38,19 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
         <BlogPostHeader
           title={title}
           datePosted={datePosted}
+          lastEditedTime={lastEditedTime}
           readTime={readTime}
           cover={blogPostDetails.imageUrl}
         />
         <BlogPostContent content={blogPostContent} />
       </div>
 
-      <div className="flex items-center justify-center w-full md:w-auto">
+      {/* <div className="flex items-center justify-center w-full md:w-auto">
         <ButtonLink href="/blog" ariaLabel="Back to blog page button">
           <span className="btn-color">Back To Blog</span>
           <FontAwesomeIcon className="btn-color" icon={faArrowLeftLong} />
         </ButtonLink>
-      </div>
+      </div> */}
     </div>
   );
 };

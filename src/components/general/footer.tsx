@@ -1,5 +1,9 @@
+"use client";
+
+import Script from "next/script";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import BuyMeACoffee from "./buymeacoffee";
 
 const Footer = () => {
   return (
@@ -23,6 +27,10 @@ const Footer = () => {
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
         </div>
+        <div>
+          <BuyMeACoffee />
+        </div>
+
         <div className="w-1/2 text-sm">
           <p className="text-center">
             Loosely inspired by other developer portfolio websites. Built with

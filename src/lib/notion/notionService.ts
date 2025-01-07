@@ -9,6 +9,7 @@ import {
   NotionBlocksArray,
   NotionMultiSelect,
   NotionDate,
+  NotionLastEditedTime,
 } from "@/types/notion";
 import notion from "./notionClient";
 import { v2 as cloudinary } from "cloudinary";
@@ -38,7 +39,6 @@ export const fetchNotionData = async (databaseId: string) => {
       },
     },
   });
-  // console.log('database query response', response);
   return response;
 };
 
@@ -82,6 +82,8 @@ export const parseNotionPage = async (page: NotionPage) => {
   const createdTime = page.properties["Created time"] as NotionCreatedTime;
 
   const date = page.properties.Date as NotionDate;
+  console.log('date', date);
+  const lastEditedTime =page.properties["Last edited time"] as NotionLastEditedTime;
 
   const thumbnailUrl = thumbnailProperty.files[0]?.file?.url ?? null;
   const cloudinaryImgUrl = await getCloudinaryThumbnail(thumbnailUrl);
@@ -94,10 +96,15 @@ export const parseNotionPage = async (page: NotionPage) => {
     slug: slugProperty.rich_text[0]?.plain_text ?? null,
     readTime: readTimeProperty.rich_text[0]?.plain_text ?? null,
     categories,
-    datePosted: formatDate(createdTime.created_time),
+    datePosted: formatDate(date.date.start),
     imageUrl: cloudinaryImgUrl,
     link: "",
-    date: date.date.start,
+    date: new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(new Date(date.date.start)),
+    lastEditedTime: formatDate(lastEditedTime.last_edited_time),
   };
 };
 
