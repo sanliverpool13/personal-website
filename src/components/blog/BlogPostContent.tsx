@@ -20,7 +20,7 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
         return <ParagraphBlock key={index} richTextElements={mappedRichText} />;
       case "bulleted_list_item":
         const mappedBulletRichText = mapRichText(
-          block.bulleted_list_item.rich_text
+          block.bulleted_list_item.rich_text,
         );
         return (
           <BulletBlock key={index} richTextElements={mappedBulletRichText} />
@@ -31,6 +31,7 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
             key={index}
             src={block.image.file.url}
             alt={block.image.caption[0]?.plain_text ?? "Inline image"}
+            caption={block.image.caption[0]?.plain_text}
           />
         );
       case "heading_3":

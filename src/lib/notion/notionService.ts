@@ -14,9 +14,8 @@ import {
 import notion from "./notionClient";
 import { v2 as cloudinary } from "cloudinary";
 import { BlogPost } from "@/types/blogPost";
-import {  formatDate, getCloudinaryThumbnail} from "../helpers";
+import { formatDate, getCloudinaryThumbnail } from "../helpers";
 import crypto from "crypto";
-
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -43,7 +42,7 @@ export const fetchNotionData = async (databaseId: string) => {
 };
 
 export const parseNotionData = async (
-  rawNotionDatabasePageData: NotionApiResponse
+  rawNotionDatabasePageData: NotionApiResponse,
 ): Promise<BlogPost[]> => {
   const parsedNotionDataPromises =
     rawNotionDatabasePageData.results.map(parseNotionPage);
@@ -51,7 +50,7 @@ export const parseNotionData = async (
 
   // I also need to save the page properties to the slug id map
   blogPosts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
   return blogPosts;
@@ -82,8 +81,9 @@ export const parseNotionPage = async (page: NotionPage) => {
   const createdTime = page.properties["Created time"] as NotionCreatedTime;
 
   const date = page.properties.Date as NotionDate;
-  console.log('date', date);
-  const lastEditedTime =page.properties["Last edited time"] as NotionLastEditedTime;
+  const lastEditedTime = page.properties[
+    "Last edited time"
+  ] as NotionLastEditedTime;
 
   const thumbnailUrl = thumbnailProperty.files[0]?.file?.url ?? null;
   const cloudinaryImgUrl = await getCloudinaryThumbnail(thumbnailUrl);
@@ -107,8 +107,6 @@ export const parseNotionPage = async (page: NotionPage) => {
     lastEditedTime: formatDate(lastEditedTime.last_edited_time),
   };
 };
-
-
 
 // Helper function to parse a single block
 const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
@@ -189,13 +187,13 @@ const parseBlock = async (block: any): Promise<NotionBlock | undefined> => {
 
 // Helper function to parse the array of blocks
 export const parseBlocks = async (
-  blocks: any[]
+  blocks: any[],
 ): Promise<NotionBlocksArray> => {
   const parsedBlocksPromises = blocks.map(parseBlock);
   const parsedBlocks = await Promise.all(parsedBlocksPromises);
 
   return parsedBlocks.filter(
-    (block): block is NotionBlock => block !== undefined
+    (block): block is NotionBlock => block !== undefined,
   );
 };
 
