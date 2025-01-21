@@ -98,7 +98,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
         <p className="font-bold">{date}</p>
 
         <Link href={link.href} passHref legacyBehavior>
-          <a className="underline flex items-center gap-2">
+          <a className="underline flex items-center gap-2" target="_blank">
             {link.text}
             <FontAwesomeIcon icon={faArrowRight} />
           </a>

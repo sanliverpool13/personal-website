@@ -1,5 +1,6 @@
 import PersonalWebsiteImg from "../../public/personalwebsite.png";
 import TravelWebsiteImg from "../../public/TravelWebScreenshot.png";
+import VeganOneMillionImg from "../../public/VeganOneMillionLanding.png";
 
 export const Works = [
   {
@@ -42,6 +43,20 @@ export const Works = [
       text: "View The Website",
     },
     imageSrc: TravelWebsiteImg,
+    imageAlt: "A screnshot of landing page",
+  },
+  {
+    id: "3",
+    title: "Vegan One Million",
+    description:
+      "A board of one million pixels to showcase vegan food businesses and non-alcoholic beverage businesses. Inspired by the one million dollar homepage.",
+    skills: ["Next.js", "React", "TypeScript", "Gimp PhotoShop"],
+    date: "2025 - ",
+    link: {
+      href: "https://www.veganonemillion.com/",
+      text: "View The Website",
+    },
+    imageSrc: VeganOneMillionImg,
     imageAlt: "A screnshot of landing page",
   },
 ];

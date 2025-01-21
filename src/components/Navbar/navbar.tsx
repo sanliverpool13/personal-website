@@ -17,9 +17,9 @@ import { hrtime } from "process";
 const navigationLinks = [
   { href: "/", text: "Home" },
   { href: "/about", text: "About" },
-  { href: "/work", text: "Work" },
   { href: "/blog", text: "Blog" },
-  { href: "/projects", text: "Projects" },
+  { href: "/work", text: "Work" },
+  // { href: "/projects", text: "Projects" },
   { href: "/contact", text: "Contact" },
 ];
 
