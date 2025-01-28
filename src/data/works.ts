@@ -1,6 +1,7 @@
 import PersonalWebsiteImg from "../../public/personalwebsite.png";
 import TravelWebsiteImg from "../../public/TravelWebScreenshot.png";
 import VeganOneMillionImg from "../../public/VeganOneMillionLanding.png";
+import CryptoDashboard from "../../public/crypto-dashboard.png";
 
 export const Works = [
   {
@@ -57,6 +58,20 @@ export const Works = [
       text: "View The Website",
     },
     imageSrc: VeganOneMillionImg,
+    imageAlt: "A screnshot of landing page",
+  },
+  {
+    id: "4",
+    title: "Crypto Binance OrderBook",
+    description:
+      "A dashboard to display real-time crypto data in the form of an OrderBook. Data is fetched from the Binance API.",
+    skills: ["Vite", "React", "TypeScript", "Figma"],
+    date: "2025 - ",
+    link: {
+      href: "https://crypto-dashboard-rose-nine.vercel.app/",
+      text: "View The Website",
+    },
+    imageSrc: CryptoDashboard,
     imageAlt: "A screnshot of landing page",
   },
 ];
