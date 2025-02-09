@@ -2,6 +2,7 @@ import PersonalWebsiteImg from "../../public/personalwebsite.png";
 import TravelWebsiteImg from "../../public/TravelWebScreenshot.png";
 import VeganOneMillionImg from "../../public/VeganOneMillionLanding.png";
 import CryptoDashboard from "../../public/crypto-dashboard.png";
+import AuthenticationImg from "../../public/authenticationapp.png";
 
 export const Works = [
   {
@@ -72,6 +73,20 @@ export const Works = [
       text: "View The Website",
     },
     imageSrc: CryptoDashboard,
+    imageAlt: "A screnshot of landing page",
+  },
+  {
+    id: "5",
+    title: "Mock Authentication App",
+    description:
+      "A mock authentication app, with login, sign up, and password reset, because forms are deceptively hard.",
+    skills: ["Vite", "React", "TypeScript", "Figma", "TailWindCSS V4"],
+    date: "2025 - ",
+    link: {
+      href: "https://sanliverpool13.github.io/authentication-demo/",
+      text: "View The Website",
+    },
+    imageSrc: AuthenticationImg,
     imageAlt: "A screnshot of landing page",
   },
 ];
