@@ -27,7 +27,7 @@ const ParagraphBlock: React.FC<ParagraphBlockProps> = ({
       variants={containerVariants}
       className="text-xl"
     > */}
-      <p className="text-xl">
+      <p className="text-lg">
         {richTextElements.map((element, index) => {
           switch (element.type) {
             case "link":

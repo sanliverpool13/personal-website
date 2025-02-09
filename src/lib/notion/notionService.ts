@@ -10,6 +10,7 @@ import {
   NotionMultiSelect,
   NotionDate,
   NotionLastEditedTime,
+  NotionBulletGroup,
 } from "@/types/notion";
 import notion from "./notionClient";
 import { v2 as cloudinary } from "cloudinary";
@@ -214,11 +215,50 @@ export const fetchBlockChildren = async (pageId: string) => {
 
     const parsedBlocks = await parseBlocks(allBlocks);
 
-    return parsedBlocks;
+    return groupBulletBlocks(parsedBlocks);
   } catch (error) {
     console.error("Error fetching block children:", error);
     throw error;
   }
+};
+
+const initialBulletGroup: NotionBulletGroup = {
+  object: "list_group",
+  type: "bullet_group",
+  bullets: [],
+};
+export const groupBulletBlocks = (
+  blocks: NotionBlocksArray,
+): NotionBlocksArray => {
+  const groupedBlocks: NotionBlocksArray = [];
+  let currentListGroup: NotionBulletGroup = { ...initialBulletGroup };
+
+  for (let i = 0; i < blocks.length; i++) {
+    const block = blocks[i];
+
+    if (block.type === "bulleted_list_item") {
+      currentListGroup.bullets.push(block);
+    } else {
+      // If there is an active group just prior, add it
+      if (currentListGroup.bullets.length > 0) {
+        groupedBlocks.push(currentListGroup);
+
+        currentListGroup = {
+          object: "list_group",
+          type: "bullet_group",
+          bullets: [],
+        };
+      }
+      // add non list item
+      groupedBlocks.push(block);
+    }
+  }
+
+  if (currentListGroup.bullets.length > 0) {
+    groupedBlocks.push(currentListGroup);
+  }
+
+  return groupedBlocks;
 };
 
 export const fetchPage = async (pageId: string) => {

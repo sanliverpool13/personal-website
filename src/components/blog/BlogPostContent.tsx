@@ -2,6 +2,7 @@ import ImageBlock from "./ImageBlock";
 import ParagraphBlock from "./ParagraphBlock";
 import HeadingBlock from "./HeadingBlock";
 import BulletBlock from "./Bulletblock";
+import BulletGroup from "./BulletGroup";
 import { NotionBlock } from "@/types/notion";
 import CodeBlock from "./CodeBlock";
 import Quote from "./Quote";
@@ -25,6 +26,11 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
         return (
           <BulletBlock key={index} richTextElements={mappedBulletRichText} />
         );
+      case "bullet_group":
+        const mappedRichTexts = block.bullets.map((block) => {
+          return mapRichText(block.bulleted_list_item.rich_text);
+        });
+        return <BulletGroup bullets={mappedRichTexts} />;
       case "image":
         return (
           <ImageBlock
@@ -55,7 +61,7 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
   };
 
   return (
-    <div className="flex flex-col gap-8 lg:w-[80%]">
+    <div className="flex flex-col gap-6 lg:w-[80%]">
       {content.map(renderContentBlock)}
     </div>
   );

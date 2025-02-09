@@ -175,6 +175,12 @@ export interface NotionDivider {
   divider: {};
 }
 
+export interface NotionBulletGroup {
+  object: string;
+  type: "bullet_group";
+  bullets: NotionBulletBlock[];
+}
+
 export type NotionBlock =
   | NotionParagraphBlock
   | NotionImageBlock
@@ -183,6 +189,7 @@ export type NotionBlock =
   | NotionBulletBlock
   | NotionEmbed
   | NotionDivider
-  | NotionQuote;
+  | NotionQuote
+  | NotionBulletGroup;
 
 export type NotionBlocksArray = NotionBlock[];

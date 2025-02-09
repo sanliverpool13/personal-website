@@ -24,7 +24,6 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
   readTime,
   cover,
 }) => {
-  console.log(`last edited time:`, lastEditedTime);
   return (
     <div className="flex flex-col gap-16 lg:w-[80%]">
       <div className="mb-6">
