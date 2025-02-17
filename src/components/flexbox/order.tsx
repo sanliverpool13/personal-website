@@ -15,7 +15,7 @@ const OrderComponent = () => {
 
   useEffect(() => {
     updatePositions();
-  }, [boxOrders]);
+  }, [boxOrders, updatePositions]);
 
   const changeOrder = (index: number, newOrder: number) => {
     setBoxOrders((prevOrders) => {

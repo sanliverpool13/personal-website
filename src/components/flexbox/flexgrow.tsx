@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const boxColors = ["bg-orange-300", "bg-orange-400", "bg-orange-500"];
-const flexgrowcomponent = () => {
+const Flexgrowcomponent = () => {
   const [flexGrowValues, setFlexGrowValues] = useState<number[]>([0, 0, 0]); // Default: equal growth
   const [containerWidth, setContainerWidth] = useState(0);
 
@@ -94,4 +94,4 @@ const flexgrowcomponent = () => {
   );
 };
 
-export default flexgrowcomponent;
+export default Flexgrowcomponent;

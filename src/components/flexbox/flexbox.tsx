@@ -209,10 +209,6 @@ const Flexbox = () => {
     setPositions(newPositions);
   };
 
-  useEffect(() => {
-    updatePositions();
-  }, [boxOrders]);
-
   const changeOrder = (index: number, newOrder: number) => {
     setBoxOrders((prevOrders) => {
       const updatedOrders = [...prevOrders];
