@@ -8,6 +8,14 @@ import CodeBlock from "./CodeBlock";
 import Quote from "./Quote";
 import Embed from "./Embed";
 import { mapRichText } from "@/lib/helpers";
+import { FlexBoxComponent } from "@/types";
+import FlexDirectionComponent from "../flexbox/flexdirection";
+import JustifyContentComponent from "../flexbox/justifyContent";
+import AlignItemsComponent from "../flexbox/alignItems";
+import GapComponent from "../flexbox/gap";
+import OrderComponent from "../flexbox/order";
+import FlexGrowComponent from "../flexbox/flexgrow";
+import FlexShrinkcomponent from "../flexbox/flexshrink";
 
 interface BlogPostContentProps {
   content: NotionBlock[];
@@ -17,6 +25,22 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
   const renderContentBlock = (block: NotionBlock, index: number) => {
     switch (block.type) {
       case "paragraph":
+        const plainText = block.paragraph.rich_text[0].plain_text;
+        if (plainText === FlexBoxComponent.direction) {
+          return <FlexDirectionComponent />;
+        } else if (plainText === FlexBoxComponent.justify) {
+          return <JustifyContentComponent />;
+        } else if (plainText === FlexBoxComponent.align) {
+          return <AlignItemsComponent />;
+        } else if (plainText === FlexBoxComponent.gap) {
+          return <GapComponent />;
+        } else if (plainText === FlexBoxComponent.order) {
+          return <OrderComponent />;
+        } else if (plainText === FlexBoxComponent.grow) {
+          return <FlexGrowComponent />;
+        } else if (plainText === FlexBoxComponent.shrink) {
+          return <FlexShrinkcomponent />;
+        }
         const mappedRichText = mapRichText(block.paragraph.rich_text);
         return <ParagraphBlock key={index} richTextElements={mappedRichText} />;
       case "bulleted_list_item":

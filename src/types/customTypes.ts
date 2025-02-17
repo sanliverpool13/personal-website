@@ -21,3 +21,13 @@ export interface WorkCardType {
     text: string;
   };
 }
+
+export enum FlexBoxComponent {
+  direction = "[flexDirection]",
+  justify = "[justifyContent]",
+  align = "[alignItems]",
+  gap = "[gap]",
+  order = "[order]",
+  grow = "[flexGrow]",
+  shrink = "[flexShrink]",
+}
