@@ -1,25 +1,15 @@
 "use client";
-import { motion } from "framer-motion";
-import {
-  containerVariants,
-  containerVariantsWithDelay,
-} from "@/lib/framer-motion";
 
 interface HeadingBlockProps {
   text: string;
+  id: string;
 }
 
-const HeadingBlock: React.FC<HeadingBlockProps> = ({ text }) => {
+const HeadingBlock: React.FC<HeadingBlockProps> = ({ text, id }) => {
   return (
-    // <motion.h3
-    //   initial="hidden"
-    //   whileInView="visible"
-    //   viewport={{ once: true }}
-    //   variants={containerVariants}
-    //   className="text-3xl font-bold"
-    // >
-    <h3 className="text-3xl font-bold mt-6">{text}</h3>
-    // {/* </motion.h3> */}
+    <h3 id={id} className="text-3xl font-bold mt-6">
+      {text}
+    </h3>
   );
 };
 

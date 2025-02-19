@@ -1,8 +1,5 @@
 import { fetchBlockChildren } from "@/lib/notion/notionService";
 import { getSlugIdMapFromRedis } from "@/lib/helpers";
-import ButtonLink from "@/components/general/buttonlink";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import BlogPostContent from "@/components/blog/BlogPostContent";
 import BlogPostHeader from "@/components/blog/BlogPostHeader";
 
@@ -44,13 +41,6 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
         />
         <BlogPostContent content={blogPostContent} />
       </div>
-
-      {/* <div className="flex items-center justify-center w-full md:w-auto">
-        <ButtonLink href="/blog" ariaLabel="Back to blog page button">
-          <span className="btn-color">Back To Blog</span>
-          <FontAwesomeIcon className="btn-color" icon={faArrowLeftLong} />
-        </ButtonLink>
-      </div> */}
     </div>
   );
 };

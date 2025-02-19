@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import Box from "./box";
+import BoxGroup from "./boxgroup";
 
 const boxColors = ["bg-orange-300", "bg-orange-400", "bg-orange-500"];
 const Flexgrowcomponent = () => {
@@ -70,26 +72,18 @@ const Flexgrowcomponent = () => {
           </div>
         ))}
       </div>
-      <div
-        ref={containerRef}
-        className="relative border rounded transition-all duration-500 ease-in-out h-[136px]"
-      >
+      {/* BoxGroup container with flex-grow effects */}
+      <BoxGroup containerRef={containerRef} height={136}>
         {boxWidths.map((width, index) => (
-          <div
+          <Box
             key={index}
-            className={`absolute rounded h-[100px] flex items-center justify-center text-white text-xl transition-all duration-500 ease-in-out ${
-              boxColors[index % boxColors.length]
-            }`}
-            style={{
-              left: `${boxLeftPositions[index]}px`,
-              width: `${width}px`,
-              top: "16px",
-            }}
-          >
-            {flexGrowValues[index]}
-          </div>
+            left={boxLeftPositions[index]}
+            width={width}
+            bgColor={boxColors[index % boxColors.length]}
+            label={flexGrowValues[index].toString()}
+          />
         ))}
-      </div>
+      </BoxGroup>
     </div>
   );
 };

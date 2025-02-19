@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import Box from "./box";
+import BoxGroup from "./boxgroup";
 
 const boxColors = ["bg-orange-300", "bg-orange-400", "bg-orange-500"];
 
@@ -73,26 +75,17 @@ const FlexShrinkcomponent = () => {
           </div>
         ))}
       </div>
-      <div
-        ref={containerRef}
-        className="relative border rounded transition-all duration-500 ease-in-out h-[136px] w-[containerWidth]"
-      >
+      <BoxGroup containerRef={containerRef} height={136}>
         {boxWidthsShrink.map((width, index) => (
-          <div
+          <Box
             key={index}
-            className={`absolute rounded h-[100px] flex items-center justify-center text-white text-xl transition-all duration-500 ease-in-out ${
-              boxColors[index % boxColors.length]
-            }`}
-            style={{
-              left: `${boxLeftPositionsShrink[index]}px`, // Corrected left position
-              width: `${width}px`, // Updated width based on shrinking
-              top: "16px",
-            }}
-          >
-            {flexShrinkValues[index]}
-          </div>
+            left={boxLeftPositionsShrink[index]}
+            width={width}
+            bgColor={boxColors[index % boxColors.length]}
+            label={flexShrinkValues[index].toString()}
+          />
         ))}
-      </div>
+      </BoxGroup>
     </div>
   );
 };

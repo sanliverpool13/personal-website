@@ -1,13 +1,16 @@
 "use client";
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { AlignItems } from "./types";
+import ToggleButtonGroup from "./ToggleButtonGroup";
+import Box from "./box";
+import BoxGroup from "./boxgroup";
 
-const alignItemsButtons = [
-  { property: "flex-start", type: AlignItems.start },
-  { property: "flex-end", type: AlignItems.end },
-  { property: "center", type: AlignItems.center },
-  { property: "stretch", type: AlignItems.stretch },
-  { property: "baseline", type: AlignItems.baseline },
+const alignItemsOptions = [
+  { type: AlignItems.start, label: "Flex Start" },
+  { type: AlignItems.end, label: "Flex End" },
+  { type: AlignItems.center, label: "Center" },
+  { type: AlignItems.stretch, label: "Stretch" },
+  { type: AlignItems.baseline, label: "Baseline" },
 ];
 
 const boxPositions = [16, 132, 248];
@@ -55,41 +58,27 @@ const AlignItemsComponent = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2">
-        {alignItemsButtons.map((item) => (
-          <button
-            key={item.type}
-            className={`p-1 border rounded w-[100px] hover:border-orange-300 hover:text-orange-300 ${
-              alignItems === item.type
-                ? " text-orange-300 border-orange-300"
-                : ""
-            }`}
-            onClick={() => setAlignItems(item.type)}
-          >
-            {item.property}
-          </button>
-        ))}
+        <ToggleButtonGroup
+          label="Align Items"
+          options={alignItemsOptions}
+          selected={alignItems}
+          onChange={setAlignItems}
+        />
       </div>
-      <div
-        ref={containerRef}
-        className="relative border rounded transition-all duration-500 ease-in-out h-[136px] "
-      >
+      <BoxGroup containerRef={containerRef} height={136}>
         {boxPositions.map((left, index) => {
           const { top, height } = boxStyles(index);
           return (
-            <div
+            <Box
               key={index}
-              className="absolute rounded w-[100px] bg-orange-300 transition-all duration-500 ease-in-out flex justify-center items-center text-white"
-              style={{
-                left: `${left}px`,
-                top: `${top}px`,
-                height: `${height}px`,
-              }}
-            >
-              Text
-            </div>
+              left={left}
+              top={top}
+              height={height}
+              label="Text"
+            />
           );
         })}
-      </div>
+      </BoxGroup>
     </div>
   );
 };

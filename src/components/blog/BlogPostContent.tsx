@@ -1,3 +1,5 @@
+"use client";
+import { useState, useRef, useEffect } from "react";
 import ImageBlock from "./ImageBlock";
 import ParagraphBlock from "./ParagraphBlock";
 import HeadingBlock from "./HeadingBlock";
@@ -7,7 +9,7 @@ import { NotionBlock } from "@/types/notion";
 import CodeBlock from "./CodeBlock";
 import Quote from "./Quote";
 import Embed from "./Embed";
-import { mapRichText } from "@/lib/helpers";
+import { mapRichText } from "@/lib/clientHelpers";
 import { FlexBoxComponent } from "@/types";
 import FlexDirectionComponent from "../flexbox/flexdirection";
 import JustifyContentComponent from "../flexbox/justifyContent";
@@ -16,30 +18,49 @@ import GapComponent from "../flexbox/gap";
 import OrderComponent from "../flexbox/order";
 import FlexGrowComponent from "../flexbox/flexgrow";
 import FlexShrinkcomponent from "../flexbox/flexshrink";
+import TableOfContents from "./tableofcontents";
 
 interface BlogPostContentProps {
   content: NotionBlock[];
 }
 
 const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
+  const [headings, setHeadings] = useState<{ id: string; text: string }[]>([]);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const extractedHeadings = content
+      .map((block, index) =>
+        block.type === "heading_3"
+          ? {
+              id: `heading-${index}`,
+              text: block.heading_3.rich_text[0].plain_text,
+            }
+          : null,
+      )
+      .filter(Boolean) as { id: string; text: string }[];
+
+    setHeadings(extractedHeadings);
+  }, [content]);
+
   const renderContentBlock = (block: NotionBlock, index: number) => {
     switch (block.type) {
       case "paragraph":
         const plainText = block.paragraph.rich_text[0].plain_text;
         if (plainText === FlexBoxComponent.direction) {
-          return <FlexDirectionComponent />;
+          return <FlexDirectionComponent key={index} />;
         } else if (plainText === FlexBoxComponent.justify) {
-          return <JustifyContentComponent />;
+          return <JustifyContentComponent key={index} />;
         } else if (plainText === FlexBoxComponent.align) {
-          return <AlignItemsComponent />;
+          return <AlignItemsComponent key={index} />;
         } else if (plainText === FlexBoxComponent.gap) {
-          return <GapComponent />;
+          return <GapComponent key={index} />;
         } else if (plainText === FlexBoxComponent.order) {
-          return <OrderComponent />;
+          return <OrderComponent key={index} />;
         } else if (plainText === FlexBoxComponent.grow) {
-          return <FlexGrowComponent />;
+          return <FlexGrowComponent key={index} />;
         } else if (plainText === FlexBoxComponent.shrink) {
-          return <FlexShrinkcomponent />;
+          return <FlexShrinkcomponent key={index} />;
         }
         const mappedRichText = mapRichText(block.paragraph.rich_text);
         return <ParagraphBlock key={index} richTextElements={mappedRichText} />;
@@ -69,6 +90,7 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
           <HeadingBlock
             key={index}
             text={block.heading_3.rich_text[0].plain_text}
+            id={`heading-${index}`}
           />
         );
       case "code":
@@ -85,8 +107,18 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ content }) => {
   };
 
   return (
-    <div className="flex flex-col gap-6 lg:w-[80%]">
-      {content.map(renderContentBlock)}
+    <div className="flex flex-col lg:flex-row gap-[5%] w-full max-w-6xl mx-auto">
+      {/* Blog Content */}
+      <div ref={contentRef} className="flex flex-col gap-6 w-full lg:w-[70%]">
+        {content.map(renderContentBlock)}
+      </div>
+
+      {/* Table of Contents */}
+      <div className="hidden lg:block w-[25%] ">
+        <div className="sticky top-24 max-h-[80vh] ">
+          <TableOfContents headings={headings} contentRef={contentRef} />
+        </div>
+      </div>
     </div>
   );
 };

@@ -25,7 +25,7 @@ const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
   cover,
 }) => {
   return (
-    <div className="flex flex-col gap-16 lg:w-[80%]">
+    <div className="flex flex-col gap-16 w-full max-w-6xl mx-auto">
       <div className="mb-6">
         <Link href="/blog" className="text-sm flex items-center gap-2">
           <span>&larr;</span> Back to All Posts

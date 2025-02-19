@@ -1,5 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Box from "./box";
+import BoxGroup from "./boxgroup";
 
 const boxColors = ["bg-orange-300", "bg-orange-400", "bg-orange-500"];
 
@@ -13,9 +15,9 @@ const OrderComponent = () => {
     setPositions(newPositions);
   };
 
-  useEffect(() => {
-    updatePositions();
-  }, [boxOrders, updatePositions]);
+  //   useEffect(() => {
+  //     updatePositions();
+  //   }, [boxOrders]);
 
   const changeOrder = (index: number, newOrder: number) => {
     setBoxOrders((prevOrders) => {
@@ -23,6 +25,7 @@ const OrderComponent = () => {
       updatedOrders[index] = newOrder;
       return updatedOrders;
     });
+    updatePositions();
   };
   return (
     <div className="flex flex-col gap-4">
@@ -41,25 +44,19 @@ const OrderComponent = () => {
           </div>
         ))}
       </div>
-      <div className="relative border rounded transition-all duration-500 ease-in-out h-[136px]">
+      <BoxGroup height={136}>
         {[...boxOrders]
           .map((order, index) => ({ order, index }))
           .sort((a, b) => a.order - b.order)
           .map(({ order, index }, index2) => (
-            <div
+            <Box
               key={index}
-              className={`absolute rounded w-[100px] h-[100px] flex items-center justify-center  text-xl transition-all duration-500 ease-in-out ${
-                boxColors[index % boxColors.length]
-              }`}
-              style={{
-                left: `${positions[index2]}px`,
-                top: "16px",
-              }}
-            >
-              {order}
-            </div>
+              left={positions[index2]}
+              bgColor={boxColors[index % boxColors.length]}
+              label={order.toString()}
+            />
           ))}
-      </div>
+      </BoxGroup>
     </div>
   );
 };

@@ -1,14 +1,17 @@
 "use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 import { JustifyContent, GapSize } from "./types";
+import ToggleButtonGroup from "./ToggleButtonGroup";
+import BoxGroup from "./boxgroup";
+import Box from "./box";
 
-const justifyContentButtons = [
-  { property: "flex-start", type: JustifyContent.start },
-  { property: "flex-end", type: JustifyContent.end },
-  { property: "center", type: JustifyContent.center },
-  { property: "space-between", type: JustifyContent.between },
-  { property: "space-around", type: JustifyContent.around },
-  { property: "space-evenly", type: JustifyContent.evenly },
+const justifyContentOptions = [
+  { type: JustifyContent.start, label: "Flex Start" },
+  { type: JustifyContent.end, label: "Flex End" },
+  { type: JustifyContent.center, label: "Center" },
+  { type: JustifyContent.between, label: "Space Between" },
+  { type: JustifyContent.around, label: "Space Around" },
+  { type: JustifyContent.evenly, label: "Space Evenly" },
 ];
 
 const JustifyContentComponent = () => {
@@ -17,7 +20,6 @@ const JustifyContentComponent = () => {
   );
 
   const [containerWidth, setContainerWidth] = useState(0);
-  const [gap, setGap] = useState<GapSize>(GapSize.small);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   // Get container width on mount and when justifyContent changes
@@ -30,7 +32,7 @@ const JustifyContentComponent = () => {
   const boxPositions = useMemo(() => {
     const boxWidth = 100;
     const totalBoxes = 3;
-    const gapValue = parseInt(gap); // Convert px string to number
+    const gapValue = parseInt(GapSize.xlarge); // Convert px string to number
 
     switch (justifyContent) {
       case JustifyContent.start:
@@ -79,43 +81,24 @@ const JustifyContentComponent = () => {
       default:
         return [16, 136, 252];
     }
-  }, [justifyContent, gap, containerWidth]);
+  }, [justifyContent, containerWidth]);
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex gap-2">
-        {justifyContentButtons.map((item) => (
-          <button
-            key={item.type}
-            className={`p-1 border rounded w-[100px] hover:border-orange-300 hover:text-orange-300 ${
-              justifyContent === item.type
-                ? " text-orange-300 border-orange-300"
-                : ""
-            }`}
-            onClick={() => setJustifyContent(item.type)}
-          >
-            {item.property}
-          </button>
-        ))}
+        <ToggleButtonGroup
+          label="Justify-Content"
+          options={justifyContentOptions}
+          selected={justifyContent}
+          onChange={setJustifyContent}
+        />
       </div>
 
-      <div
-        ref={containerRef}
-        className="relative border rounded transition-all duration-500 ease-in-out h-[136px] "
-      >
-        {boxPositions.map((left, index) => {
-          return (
-            <div
-              key={index}
-              className="absolute rounded w-[100px] h-[100px] bg-orange-300 transition-all duration-500 ease-in-out flex justify-center items-center "
-              style={{
-                left: `${left}px`,
-                top: `16px`,
-              }}
-            ></div>
-          );
-        })}
-      </div>
+      <BoxGroup containerRef={containerRef} height={136}>
+        {boxPositions.map((left, index) => (
+          <Box key={index} left={left} />
+        ))}
+      </BoxGroup>
     </div>
   );
 };

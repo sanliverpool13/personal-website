@@ -1,6 +1,9 @@
 "use client";
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import { GapSize } from "./types";
+import ToggleButtonGroup from "./ToggleButtonGroup";
+import Box from "./box";
+import BoxGroup from "./boxgroup";
 
 const gapOptions = [
   { type: GapSize.small, label: "4px" },
@@ -32,35 +35,18 @@ const GapComponent = () => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-2">
-        {gapOptions.map((item) => (
-          <button
-            key={item.type}
-            className={`p-1 border rounded w-[100px] hover:border-orange-300 hover:text-orange-300 ${
-              gap === item.type ? " text-orange-300 border-orange-300" : ""
-            }`}
-            onClick={() => setGap(item.type)}
-          >
-            {item.label}
-          </button>
+        <ToggleButtonGroup
+          label="Gap"
+          options={gapOptions}
+          selected={gap}
+          onChange={setGap}
+        />
+      </div>
+      <BoxGroup containerRef={containerRef} height={136}>
+        {boxPositions.map((left, index) => (
+          <Box key={index} left={left} />
         ))}
-      </div>
-      <div
-        ref={containerRef}
-        className="relative border rounded transition-all duration-500 ease-in-out h-[136px] "
-      >
-        {boxPositions.map((left, index) => {
-          return (
-            <div
-              key={index}
-              className="absolute rounded w-[100px] h-[100px] bg-orange-300 transition-all duration-500 ease-in-out flex justify-center items-cente"
-              style={{
-                left: `${left}px`,
-                top: `16px`,
-              }}
-            ></div>
-          );
-        })}
-      </div>
+      </BoxGroup>
     </div>
   );
 };
