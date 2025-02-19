@@ -16,7 +16,7 @@ const ContactForm = () => {
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -25,11 +25,13 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Reset form after submission for demonstration
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+    console.log("handle submit data");
+    // setFormData({
+    //   name: "",
+    //   email: "",
+    //   message: "",
+    // });
+    console.log(formData);
 
     try {
       const response = await fetch("https://formspree.io/f/xgeglwyj", {
@@ -43,6 +45,7 @@ const ContactForm = () => {
 
       if (response.ok) {
         console.log("Form submitted successfully.");
+        alert("Thank you! Your message has been sent successfully.");
         // Reset form fields or handle success state here
         setFormData({
           name: "",
