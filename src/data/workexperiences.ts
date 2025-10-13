@@ -1,5 +1,13 @@
 export const workExperiences = [
   {
+    date: "Mar 2025 - ",
+    role: "Software Engineer",
+    company: "Hootsuite",
+    description:
+      "Working on organization management features that support large-scale enterprise customers",
+    skills: ["React", "TypeScript", "Go", "Scala"],
+  },
+  {
     date: "Feb 2023 - Feb 2024",
     role: "Software Engineer",
     company: "OrderGrid Inc",

@@ -26,12 +26,12 @@ const Landing = () => {
             <span>A software engineer based in Toronto.</span>
           </h1>
           <p className="text-base lg:text-xl">
-            I love programming, sports, reading books, travelling and the list
-            goes on.
+            I love coding, sports, reading books, travelling cycling, running
+            and hiking.
           </p>
           <p className="text-base lg:text-xl">
-            This website is my little corner on the web, where I build stuff and
-            write about topics I find interesting.
+            This is my little corner on the web, where I build stuff and write
+            about topics I find interesting.
           </p>
         </header>
 

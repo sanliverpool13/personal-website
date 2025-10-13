@@ -83,21 +83,19 @@ const AboutMe = () => {
           className="md:col-start-5 md:col-span-6 flex flex-col text-xl leading-8 text-justify md:space-y-4 space-y-2"
         >
           <p>
-            I&apos;m a developer with a passion for creating meaningful
-            projects, both on the frontend and backend. Since graduating in
-            2019, I&apos;ve been working as a software engineer, building
-            solutions that make an impact.
+            I&apos;m a developer with a passion for building features and
+            products. I have been a software engineer professionally since
+            graduating in 2019.
           </p>
           <p>
-            Beyond coding, I&apos;m deeply passionate about sports and books. I
-            could spend a whole day watching soccer or NFL, or reading an epic
-            fantasy book.
+            I also love sports, reading books and running, hiking and spending
+            time with family and friends.
           </p>
           <p>
-            I&apos;m also endlessly curious about how people live their lives in
-            different parts of the world. Traveling with my girlfriend allows us
-            to explore, experience new cultures, and satisfy that curiosity. You
-            can check out our adventures on{" "}
+            I&apos;m very curious about how people live their lives in different
+            parts of the world. Traveling with my girlfriend allows us to
+            explore and experience new cultures. You can check out our
+            adventures on{" "}
             <a
               href="https://www.jeletadventures.com/"
               target="_blank"
@@ -107,13 +105,13 @@ const AboutMe = () => {
             </a>
             .
           </p>
-          <p>
+          {/* <p>
             This website is my little corner of the internet where I share the
             things I create and write about topics that inspire me. I&apos;m
             constantly updating and redesigning it—not just to make it look
             better but also to learn and grow as a developer along the way. Hope
             you enjoy it!
-          </p>
+          </p> */}
         </motion.div>
       </div>
     </section>

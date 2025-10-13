@@ -15,7 +15,7 @@ const BlogPostsGrid: React.FC<BlogPostsGridProps> = ({ blogPosts }) => {
           <p className="text-xl max-w-2xl text-tag">
             Writing helps me organize my thoughts, focus, learn, and improve my
             communication skills. In this blog you will find posts about
-            anything I find interesting. Hope you enjoy!
+            anything I find interesting.
           </p>
         </div>
       </header>
